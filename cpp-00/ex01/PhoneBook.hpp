@@ -20,6 +20,7 @@ class PhoneBook {
 		void	set_length(std::string info);
 		void	print_search(int i);
 		bool	valid_phone_number(std::string s);
+		bool	valid_alpha(std::string s);
 };
 
 #endif

@@ -1,22 +1,33 @@
-SRC = PhoneBook.cpp
-OBJ = $(SRC:.cpp=.o)
-CC = clang++
+NAME = PhoneBook
+
+SRCS = PhoneBook.cpp main.cpp
+
+CPP = c++
+
 RM = rm -rf
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = phonebook
+FLAGS = --std=c++98 -Wall -Wextra -Werror
 
-all: $(NAME)
+OBJS = $(SRCS:.cpp=.o)
 
-$(NAME): $(OBJ)
-	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
+%.o : %.cpp
+	$(CPP) $(FLAGS) -c $< -o $@
 
-clean:
-	$(RM) $(OBJ)
+all		: $(NAME)
 
-fclean: clean
+$(NAME) : $(OBJS)
+	$(CPP) $(FLAGS) $(OBJS) -o $(NAME)
+
+
+clean :
+	$(RM) $(OBJS)
+
+fclean	:
+	$(RM) $(OBJS)
 	$(RM) $(NAME)
 
-re: fclean $(NAME)
+re :
+	make fclean
+	make all
 
-.PHONY: all clean fclean re
+.PHONY : all clean fclean re

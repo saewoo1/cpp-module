@@ -6,7 +6,7 @@ void	show_all_page(PhoneBook page[8])
 		page[i].print_page();
 }
 
-void	show_preview(PhoneBook page[8])
+void	show_all_info(PhoneBook page[8])
 {
 	std::cout << std::right << std::setw(10) << "idx";
 	std::cout << "|";
@@ -18,15 +18,13 @@ void	show_preview(PhoneBook page[8])
 	std::cout << "|";
 	std::cout << std::right << std::setw(10) << "PhoneNum";
 	std::cout << "|";
-	std::cout << std::right << std::setw(10) << "Secret";
-	std::cout << "|";
 	std::cout << std::endl;
 
 	for (int i = 0; i < 8; i++)
 		page[i].print_search(i);
 }
 
-void	select_idx(PhoneBook page[8])
+void	idx_choice(PhoneBook page[8])
 {
 	int	i;
 	std::string input_i;
@@ -37,8 +35,8 @@ void	select_idx(PhoneBook page[8])
 	ss << input_i;
 	ss >> i;
 
-	if (0 <= i && i <= 8 && !ss.fail())
-		page[i].print_page();
+	if (1 <= i && i <= 8 && !ss.fail())
+		page[i - 1].print_page();
 	else
 		std::cout << "retry. wrong page number." << std::endl;
 }
@@ -51,20 +49,20 @@ int	main()
 
 	while (1)
 	{
-		std::cout << "Select command -> exit / add / search ";
+		std::cout << "Select command -> EXIT / ADD / SEARCH / ";
 		std::getline(std::cin, str);
-		if (str.compare("exit") == 0)
+		if (str.compare("EXIT") == 0)
 			exit(0);
-		else if(str.compare("add") == 0) // 8개까지 저장할거고, 넘으면 젤 오래된거 지울거임
+		else if(str.compare("ADD") == 0)
 		{
 			i %= 8;
 			page[i].add_page(i);
 			i++;
 		}
-		else if(str.compare("search") == 0)
+		else if(str.compare("SEARCH") == 0)
 		{
-			show_preview(page);
-			select_idx(page);
+			show_all_info(page);
+			idx_choice(page);
 		}
 		else
 			std::cout << "wrong command...." << std::endl;
