@@ -41,8 +41,8 @@ Fixed::Fixed(int num)
 	std::cout << "Int constructor called" << std::endl;
 	this->val = num << this->bit;
 }
-Fixed::Fixed(float num)
+Fixed::Fixed(const float num)
 {
 	std::cout << "Float constructor called" << std::endl;
-	this->val = num << d....
+	this->val = roundf(num * (1 << this->bit));
 }
