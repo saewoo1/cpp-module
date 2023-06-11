@@ -1,26 +1,15 @@
-#ifndef	PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#include "Contact.hpp"
 
-# include <string>
-# include <iostream>
-# include <iomanip>
-# include <sstream>
-
-
-class PhoneBook {
+class PhoneBook
+{
 	private:
-		std::string first_name;
-		std::string last_name;
-		std::string nick_name;
-		std::string phone_number;
-		std::string darkest_secret;
+		Contact contacts[8];
 	public:
-		void	add_page(int i);
-		void	print_page(void);
-		void	set_length(std::string info);
-		void	print_search(int i);
-		bool	valid_phone_number(std::string s);
-		bool	valid_alpha(std::string s);
+		void AddPage(int i);
+		void PrintPage(Contact page);
+		void SetLength(std::string info);
+		void PrintSearch(Contact page, int i);
+		bool IsValidStr(std::string s);
+		bool IsValidNum(std::string s);
+		void PrintRes(void);
 };
-
-#endif

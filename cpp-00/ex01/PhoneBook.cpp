@@ -1,86 +1,93 @@
 #include "PhoneBook.hpp"
+#include <iomanip>
+#include <sstream>
 
-bool	PhoneBook::valid_phone_number(std::string s)
+bool	PhoneBook::IsValidStr(std::string s)
 {
 	for (size_t i = 0; i < s.length(); i++)
 	{
-		if(!isdigit(s[i]))
-		{
-			std::cout << "unvalid number" << std::endl;
+		if (!isalpha(s[i]))
 			return (false);
-		}
 	}
 	return (true);
 }
 
-bool	PhoneBook::valid_alpha(std::string s)
+bool	PhoneBook::IsValidNum(std::string s)
 {
-	if (!s.length())
-	{
-		std::cout << "unvalid info" << std::endl;
-		return (false);
-	}
 	for (size_t i = 0; i < s.length(); i++)
 	{
-		if (isalpha(s[i]) != 1 && isalpha(s[i]) != 2)
-		{
-			std::cout << "unvalid info" << std::endl;
+		if (!isdigit(s[i]))
 			return (false);
-		}
 	}
-		return (true);
+	return (true);
 }
 
-void	PhoneBook::add_page(int i)
+void	PhoneBook::AddPage(int i) // 반복되는데 함수로 빼져..
 {
-	i = 0;
+	std::string tmp;
+
 	std::cout << "First name : ";
-	std::getline(std::cin, first_name);
-	while (!first_name.length() || !valid_alpha(first_name))
+	std::getline(std::cin, tmp);
+	while (!tmp.length() || !IsValidStr(tmp))
 	{
+		std::cout << "wrong info, try again.." << std::endl;
 		std::cout << "First name : ";
-		std::getline(std::cin, first_name);
+		std::getline(std::cin, tmp);
 	}
-	std::cout << "last name : ";
-	std::getline(std::cin, last_name);
-	while (!last_name.length() || !valid_alpha(last_name))
+	this->contacts[i].SetFirstName(tmp);
+
+	std::cout << "Last name : ";
+	std::getline(std::cin, tmp);
+	while (!tmp.length() || !IsValidStr(tmp))
 	{
-		std::cout << "last name : ";
-		std::getline(std::cin, last_name);
+		std::cout << "wrong info, try again.." << std::endl;
+		std::cout << "Last name : ";
+		std::getline(std::cin, tmp);
 	}
-	std::cout << "nick name : ";
-	std::getline(std::cin, nick_name);
-	while (!nick_name.length())
+	this->contacts[i].SetLastName(tmp);
+
+	std::cout << "Nick name : ";
+	std::getline(std::cin, tmp);
+	while (!tmp.length())
 	{
-		std::cout << "First name : ";
-		std::getline(std::cin, nick_name);
+		std::cout << "wrong info, try again.." << std::endl;
+		std::cout << "Nick name : ";
+		std::getline(std::cin, tmp);
 	}
-	std::cout << "Phone num : ";
-	std::getline(std::cin, phone_number);
-	while (!phone_number.length() || !valid_phone_number(phone_number))
+	this->contacts[i].SetNickName(tmp);
+
+	std::cout << "Phone number : ";
+	std::getline(std::cin, tmp);
+	while (!tmp.length() || !IsValidNum(tmp))
 	{
-		std::cout << "Phone num : ";
-		std::getline(std::cin, phone_number);
+		std::cout << "wrong info, try again.." << std::endl;
+		std::cout << "Phone number : ";
+		std::getline(std::cin, tmp);
 	}
-	std::cout << "darkest secret : ";
-	std::getline(std::cin, darkest_secret);
-	while (!darkest_secret.length())
+	this->contacts[i].SetPhoneNumber(tmp);
+
+	std::cout << "Darkest secret : ";
+	std::getline(std::cin, tmp);
+	while (!tmp.length())
 	{
-		std::cout << "First name : ";
-		std::getline(std::cin, darkest_secret);
+		std::cout << "wrong info, try again.." << std::endl;
+		std::cout << "Darkest secret : ";
+		std::getline(std::cin, tmp);
 	}
+	this->contacts[i].SetSecret(tmp);
+	std::cout << "Save clear!" << std::endl;
 }
 
-void	PhoneBook::print_page(void)
+void	PhoneBook::PrintPage(Contact page)
 {
-	std::cout << "First name : " << first_name << std::endl;
-	std::cout << "last name : " << last_name << std::endl;
-	std::cout << "nick name : " << nick_name << std::endl;
-	std::cout << "phone num : " << phone_number << std::endl;
-	std::cout << "darkest secret : " << darkest_secret << std::endl;
+	std::cout << "First name : " << page.GetFirstName() << std::endl;
+	std::cout << "Last name : " << page.GetLastName() << std::endl;
+	std::cout << "Nick name : " << page.GetNickName() << std::endl;
+	std::cout << "Phone number : " << page.GetPhoneNumber() << std::endl;
+	std::cout << "Darkest secret : " << page.GetSecret() << std::endl;
 }
 
-void	PhoneBook::set_length(std::string info)
+void	PhoneBook::SetLength(std::string info)
 {
 	if (info.length() <= 10)
 		std::cout << std::right << std::setw(10) << info;
@@ -91,20 +98,45 @@ void	PhoneBook::set_length(std::string info)
 	}
 }
 
-void	PhoneBook::print_search(int i)
+void	PhoneBook::PrintSearch(Contact page, int i)
 {
 	std::stringstream ss;
-
 	ss << i + 1;
-	set_length(ss.str());
+	SetLength(ss.str());
 	std::cout << "|";
-	set_length(first_name);
+	SetLength(page.GetFirstName());
 	std::cout << "|";
-	set_length(last_name);
+	SetLength(page.GetLastName());
 	std::cout << "|";
-	set_length(nick_name);
-	std::cout << "|";
-	set_length(phone_number);
-	std::cout << "|";
+	SetLength(page.GetNickName());
 	std::cout << std::endl;
+}
+
+void	PhoneBook::PrintRes()
+{
+	std::string input_i;
+	int	i = 0;
+
+	std::cout << std::right << std::setw(10) << "idx";
+	std::cout << "|";
+	std::cout << std::right << std::setw(10) << "First name";
+	std::cout << "|";
+	std::cout << std::right << std::setw(10) << "Last name";
+	std::cout << "|";
+	std::cout << std::right << std::setw(10) << "Nickname" << std::endl;
+	for (int i = 0; i < 8; i++)
+		if (this->contacts[i].GetFirstName().empty() == false)
+			PrintSearch(this->contacts[i], i);
+	
+	while (true)
+	{
+		std::cout << "Page number? : ";
+		std::getline(std::cin, input_i);
+		std::stringstream ss(input_i);
+		ss >> i;
+		if ((i >= 1 && i <= 8) && this->contacts[i - 1].GetFirstName().empty() == false)
+			break ;
+		std::cout << "Wrong index, try again..." << std::endl;
+	}
+	PrintPage(this->contacts[i - 1]);
 }

@@ -1,6 +1,6 @@
-NAME = PhoneBook
+NAME = Account
 
-SRCS = PhoneBook.cpp main.cpp Contact.cpp
+SRCS = Account.cpp tests.cpp
 
 CPP = c++
 
