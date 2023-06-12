@@ -18,6 +18,8 @@ class Fixed {
 
 		Fixed(int num);
 		Fixed(const float num);
-		int	toInt(void);
+		int	toInt(void) const;
+		float toFloat(void) const;
 };
+		std::ostream& operator<<(std::ostream &out, const Fixed &obj);
 #endif

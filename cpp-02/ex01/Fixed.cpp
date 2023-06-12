@@ -46,3 +46,19 @@ Fixed::Fixed(const float num)
 	std::cout << "Float constructor called" << std::endl;
 	this->val = roundf(num * (1 << this->bit));
 }
+
+int	Fixed::toInt(void) const
+{
+	return (this->val >> this->bit);
+}
+
+float	Fixed::toFloat(void) const
+{
+	return ((float)this->val / (1 << this->bit));
+}
+
+std::ostream& operator<<(std::ostream &out, const Fixed &obj)
+{
+	out << obj.toFloat();
+	return (out);
+}
