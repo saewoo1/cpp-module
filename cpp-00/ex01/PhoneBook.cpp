@@ -22,7 +22,7 @@ bool	PhoneBook::IsValidNum(std::string s)
 	return (true);
 }
 
-void	PhoneBook::AddPage(int i) // 반복되는데 함수로 빼져..
+void	PhoneBook::AddPage(int i)
 {
 	std::string tmp;
 

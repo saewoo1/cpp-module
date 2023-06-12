@@ -21,9 +21,7 @@ int	main(void)
 			i++;
 		}
 		else if (command.compare("SEARCH") == 0)
-		{
 			pages.PrintRes();
-		}
 		else
 			std::cout << "wrong command.. " << std::endl;
 	}
