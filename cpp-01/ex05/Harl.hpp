@@ -1,7 +1,8 @@
-#ifndef KAREN_CPP
-# define KAREN_CPP
+#ifndef HARL_HPP
+# define HARL_HPP
+# include <iostream>
 
-class Karen
+class Harl
 {
 	private:
 		void debug(void);
