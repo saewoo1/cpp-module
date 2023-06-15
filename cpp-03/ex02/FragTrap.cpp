@@ -58,7 +58,7 @@ void FragTrap::attack(const std::string& target)
 	}
 }
 
-void FragTrap::hiFivesGuys(void) {
+void FragTrap::highFiveGuys(void) {
 	if (!this->HitPoints)
 		std::cout << "FragTrap " << this->name << " is already died...." << std::endl;
 	else	

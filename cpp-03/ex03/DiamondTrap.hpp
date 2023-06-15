@@ -14,8 +14,9 @@ class DiamondTrap : public FragTrap, public ScavTrap { // Frag, scav를 같이 �
 		DiamondTrap(const DiamondTrap& obj);
 		DiamondTrap& operator=(const DiamondTrap& obj);
 
-		void whoAmi(void);
+		void whoAmI(void);
 		void attack(const std::string &target);
+		void statusPrint(void);
 };
 
 #endif

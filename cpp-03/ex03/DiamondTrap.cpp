@@ -30,11 +30,18 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &obj)
 	return (*this);
 }
 
-void DiamondTrap::whoAmi(void) {
+void DiamondTrap::whoAmI(void) {
 	std::cout << "DiamondTrap name is " << this->name
 		 << " ClapTrap name is " << ClapTrap::name << std::endl;
 }
 
 void DiamondTrap::attack(std::string const &target) {
 	ScavTrap::attack(target);
+}
+
+void DiamondTrap::statusPrint(void) {
+	std::cout << ">>>>>>Diamond " + name + " status<<<<<<" << std::endl;
+	std::cout << "HitPoint : " << this->HitPoints <<std::endl;
+	std::cout << "EnergyPoint : " << this->EnergyPoint << std::endl;
+	std::cout << "AttackDamage : " << this->AttackDamage << std::endl;
 }

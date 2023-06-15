@@ -53,7 +53,7 @@ void ScavTrap::guardGate(void)
 		std::cout << "ScavTrap" << this->name << " point is empty" << std::endl;
 	else
 	{
-		std::cout<< "ScavTrap" << this->name << "guardgate is called" << std::endl;
+		std::cout<< "ScavTrap " << this->name << " guardgate is called" << std::endl;
 		this->EnergyPoint--;
 	}
 }
