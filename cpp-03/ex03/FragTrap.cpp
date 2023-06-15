@@ -1,0 +1,69 @@
+#include "FragTrap.hpp"
+
+FragTrap::FragTrap(void)
+{
+	this->name = "default";
+	this->AttackDamage = 30;
+	this->HitPoints = 100;
+	this->EnergyPoint = 100;
+
+	std::cout << "FragTrap " << this->name << " constructor called" << std::endl;
+}
+
+FragTrap::FragTrap(std::string name)
+{
+	this->name = name;
+	this->AttackDamage = 30;
+	this->HitPoints = 100;
+	this->EnergyPoint = 100;
+
+	std::cout << "FragTrap " << this->name << " constructor called" << std::endl;
+
+}
+
+FragTrap::FragTrap(const FragTrap &obj)
+{
+	this->name = obj.name;
+	this->AttackDamage = obj.AttackDamage;
+	this->HitPoints = obj.HitPoints;
+	this->EnergyPoint = obj.EnergyPoint;
+
+	std::cout << "FragTrap " << this->name << " constructor called" << std::endl;
+}
+
+FragTrap::~FragTrap(void)
+{
+	std::cout << "FragTrap " << this->name << " destructor is called" << std::endl;
+}
+
+FragTrap &FragTrap::operator=(const FragTrap &obj)
+{
+	this->name = obj.name;
+	this->AttackDamage = obj.AttackDamage;
+	this->HitPoints = obj.HitPoints;
+	this->EnergyPoint = obj.EnergyPoint;
+
+	std::cout << "FragTrap operator " << name << "called" << std::endl; 
+	return (*this);
+}
+
+void FragTrap::attack(const std::string& target)
+{
+	if (!this->HitPoints || !this->EnergyPoint)
+		std::cout << "FragTrap " << this->name << " point is empty" << std::endl;
+	else {
+		std::cout << "FragTrap " << this->name << " attaks " << target << 
+			", causing " << this->AttackDamage << " points of damage!" << std::endl;
+		this->EnergyPoint--;
+	}
+}
+
+void FragTrap::hiFivesGuys(void) {
+	if (!this->HitPoints)
+		std::cout << "FragTrap " << this->name << " is already died...." << std::endl;
+	else	
+	{
+		std::cout << "FragTrap " << this->name << " HIFIVE!!!!! +1 EnergyPoint!!!" << std::endl; 
+		this->EnergyPoint++;
+	}
+}

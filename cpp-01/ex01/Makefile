@@ -1,6 +1,6 @@
-NAME = Zombie
+NAME = ZombieHorde
 
-SRCS = main.cpp Zombie.cpp newZombie.cpp ramdomChump.cpp
+SRCS = main.cpp Zombie.cpp ZombieHorde.cpp
 
 CXX = c++
 

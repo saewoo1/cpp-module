@@ -1,6 +1,6 @@
-NAME = Zombie
+NAME = Human
 
-SRCS = main.cpp Zombie.cpp newZombie.cpp ramdomChump.cpp
+SRCS = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 
 CXX = c++
 

@@ -1,6 +1,6 @@
-NAME = Zombie
+NAME = Files
 
-SRCS = main.cpp Zombie.cpp newZombie.cpp ramdomChump.cpp
+SRCS = main.cpp
 
 CXX = c++
 
