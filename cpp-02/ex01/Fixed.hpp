@@ -6,8 +6,8 @@
 
 class Fixed {
 	private:
-		int	val;
-		int static const bit = 8;
+		int	val; // 고정소수점 값
+		int static const bit = 8; // 소수의 비트 수 저장
 	public:
 		Fixed(void);
 		~Fixed(void);

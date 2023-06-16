@@ -38,8 +38,8 @@ Fixed::Fixed(int num)
 Fixed::Fixed(const float num)
 {
 	std::cout << "Float constructor called" << std::endl;
-	this->val = roundf(num * (1 << this->bit));
-}
+	this->val = roundf(num * (1 << this->bit)); // float 자료형은 비트연산 불가능
+}	// 소수점 밑의 값이 사라지지 않도록 roundf
 
 int	Fixed::toInt(void) const
 {
