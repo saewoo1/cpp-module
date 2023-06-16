@@ -5,7 +5,7 @@ static float area(Point a, Point b, Point c) {
 	float area2;
 	float res;
 
-	area1 = (a.getX().toFloat() * b.getY().toFloat() // tofloat 가져와야되나?
+	area1 = (a.getX().toFloat() * b.getY().toFloat()
 				+ b.getX().toFloat() * c.getY().toFloat()
 				+ c.getX().toFloat() * a.getY().toFloat());
 	area2 = (b.getX().toFloat() * a.getX().toFloat()
