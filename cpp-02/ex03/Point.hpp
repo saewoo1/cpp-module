@@ -18,6 +18,6 @@ class Point
 		const Fixed &getX(void) const;
 		const Fixed &getY(void) const;
 };
-std::ostream &operator<<(std::ostream &obj, Point const point);
+bool bsp(Point const a, Point const b, Point const c, Point const point);
 
 #endif

@@ -50,7 +50,7 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &obj)
 void ScavTrap::guardGate(void)
 {
 	if (!this->HitPoints || !this->EnergyPoint)
-		std::cout << "ScavTrap" << this->name << " point is empty" << std::endl;
+		std::cout << "ScavTrap " << this->name << " point is empty" << std::endl;
 	else
 	{
 		std::cout<< "ScavTrap " << this->name << " guardgate is called" << std::endl;

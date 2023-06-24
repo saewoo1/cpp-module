@@ -38,10 +38,12 @@ ScavTrap::~ScavTrap(void)
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &obj)
 {
-	this->name = obj.name;
-	this->AttackDamage = obj.AttackDamage;
-	this->HitPoints = obj.HitPoints;
-	this->EnergyPoint = obj.EnergyPoint;
+	if (this != &obj) {
+		this->name = obj.name;
+		this->AttackDamage = obj.AttackDamage;
+		this->HitPoints = obj.HitPoints;
+		this->EnergyPoint = obj.EnergyPoint;
+	}
 
 	std::cout << "ScavTrap operator " << name << "called" << std::endl; 
 	return (*this);
@@ -49,8 +51,10 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &obj)
 
 void ScavTrap::guardGate(void)
 {
-	if (!this->HitPoints || !this->EnergyPoint)
+	if (!this->HitPoints || !this->EnergyPoint) {
 		std::cout << "ScavTrap " << this->name << " point is empty" << std::endl;
+		return ;
+	}
 	else
 	{
 		std::cout<< "ScavTrap " << this->name << " guardgate is called" << std::endl;
@@ -60,8 +64,10 @@ void ScavTrap::guardGate(void)
 
 void ScavTrap::attack(const std::string& target)
 {
-	if (!this->HitPoints || !this->EnergyPoint)
+	if (!this->HitPoints || !this->EnergyPoint) {
 		std::cout << "ScavTrap " << this->name << " point is empty" << std::endl;
+		return ;
+	}
 	else {
 		std::cout << "ScavTrap " << this->name << " attaks " << target << 
 			", causing " << this->AttackDamage << " points of damage!" << std::endl;

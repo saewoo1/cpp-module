@@ -6,9 +6,9 @@ int	main()
 	ClapTrap b("tokki");
 
 	a.attack("tokki");
-	b.takeDamage(3);
+	b.takeDamage(99);
 	b.beRepaired(3);
 	b.attack("saewoo");
-	a.takeDamage(10);
+	a.takeDamage(2);
 	a.beRepaired(10);
 }

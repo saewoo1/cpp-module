@@ -47,7 +47,7 @@ int	Fixed::toInt(void) const
 }
 float	Fixed::toFloat(void) const
 {
-	return ((float)this->val / (1 << this->bit));
+	return (static_cast<float>(this->val) / (1 << this->bit));
 }
 
 std::ostream& operator<<(std::ostream &out, const Fixed &obj)
@@ -96,18 +96,22 @@ Fixed Fixed::operator*(const Fixed& obj) const
 	Fixed tmp(this->toFloat() * obj.toFloat());
 	return (tmp);
 }
-Fixed Fixed::operator/(const Fixed& obj) const // obj->val 0이ㄴ지 검검수수?
-{
+Fixed Fixed::operator/(const Fixed& obj) const
+{	
+	if (obj == 0) {
+		std::cout << "divison by 0..? bye..\n"; 
+		exit(1);
+	}
 	Fixed tmp(this->toFloat() / obj.toFloat());
 	return (tmp);
 }
 
-Fixed &Fixed::operator++(void) // 전위
+Fixed &Fixed::operator++(void)
 {
 	this->val++;
 	return (*this);
 }
-const Fixed Fixed::operator++(int) // 후위
+const Fixed Fixed::operator++(int)
 {
 	const Fixed tmp(*this);
 	this->val++;

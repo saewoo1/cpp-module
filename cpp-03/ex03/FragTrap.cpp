@@ -38,10 +38,12 @@ FragTrap::~FragTrap(void)
 
 FragTrap &FragTrap::operator=(const FragTrap &obj)
 {
-	this->name = obj.name;
-	this->AttackDamage = obj.AttackDamage;
-	this->HitPoints = obj.HitPoints;
-	this->EnergyPoint = obj.EnergyPoint;
+	if (this != &obj) {
+		this->name = obj.name;
+		this->AttackDamage = obj.AttackDamage;
+		this->HitPoints = obj.HitPoints;
+		this->EnergyPoint = obj.EnergyPoint;
+	}
 
 	std::cout << "FragTrap operator " << name << "called" << std::endl; 
 	return (*this);
@@ -52,7 +54,7 @@ void FragTrap::highFiveGuys(void) {
 		std::cout << "FragTrap " << this->name << " is already died...." << std::endl;
 	else	
 	{
-		std::cout << "FragTrap " << this->name << " HIFIVE!!!!! +1 EnergyPoint!!!" << std::endl; 
 		this->EnergyPoint++;
+		std::cout << "FragTrap " << this->name << " HIFIVE!!!!! +1 EnergyPoint!!! eng : " << this->EnergyPoint << std::endl; 
 	}
 }

@@ -5,9 +5,11 @@ int	main(void) {
 	ScavTrap b("SSSSSCAV");
 
 	a.attack("SSSSSCAV");
-	b.takeDamage(3);
+	b.takeDamage(999);
 	b.beRepaired(3);
 	b.attack("JJAK");
 	a.takeDamage(10);
 	a.beRepaired(10);
+	b.takeDamage(2);
+	a.guardGate();
 }

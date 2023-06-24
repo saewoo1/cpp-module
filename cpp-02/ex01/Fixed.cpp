@@ -10,6 +10,13 @@ Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
 }
+Fixed& Fixed::operator=(const Fixed& obj)
+{
+	std::cout << "Copy assignment operator called" << std::endl;
+	if (this != &obj)
+		this->val = obj.getRawBits();
+	return (*this);
+}
 
 Fixed::Fixed(const Fixed& obj)
 {
@@ -17,17 +24,10 @@ Fixed::Fixed(const Fixed& obj)
 	this->val = obj.getRawBits();
 }
 
-Fixed& Fixed::operator=(const Fixed& obj)
-{
-	std::cout << "Copy assignment operator called" << std::endl;
-	if (this != &obj)
-		this->val = obj.getRawBits();
-	return (*this);	
-}
 
 int Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
+	// std::cout << "getRawBits member function called" << std::endl;
 	return (this->val);
 }
 
@@ -54,7 +54,7 @@ int	Fixed::toInt(void) const
 
 float	Fixed::toFloat(void) const
 {
-	return ((float)this->val / (1 << this->bit));
+	return (static_cast<float>(this->val) / (1 << this->bit));
 }
 
 std::ostream& operator<<(std::ostream &out, const Fixed &obj)

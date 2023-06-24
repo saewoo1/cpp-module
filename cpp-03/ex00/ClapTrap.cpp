@@ -7,7 +7,7 @@ ClapTrap::ClapTrap(void)
 	this->HitPoints = 10;
 	this->EnergyPoint = 10;
 
-	std::cout << "ClapTrap " << name <<  " constructor called" << std::endl;
+	std::cout << "ClapTrap " << this->name <<  " constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name)
@@ -17,16 +17,17 @@ ClapTrap::ClapTrap(std::string name)
 	this->HitPoints = 10;
 	this->EnergyPoint = 10;
 	
-	std::cout << "ClapTrap " << name <<  " constructor called" << std::endl;
+	std::cout << "ClapTrap " << this->name <<  " constructor called" << std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &obj)
 {
-	this->name = obj.name;
-	this->AttackDamage = obj.AttackDamage;
-	this->HitPoints = obj.HitPoints;
-	this->EnergyPoint = obj.EnergyPoint;
-
+	if (this != &obj) {
+		this->name = obj.name;
+		this->AttackDamage = obj.AttackDamage;
+		this->HitPoints = obj.HitPoints;
+		this->EnergyPoint = obj.EnergyPoint;
+	}
 	std::cout << "ClapTrap operator " << name << "called" << std::endl; 
 	return (*this);
 }
@@ -48,11 +49,13 @@ ClapTrap::~ClapTrap(void)
 
 void ClapTrap::attack(const std::string &target)
 {
-	if (!this->HitPoints || !this->EnergyPoint)
+	if (!this->HitPoints || !this->EnergyPoint) {
 		std::cout << "ClapTrap " << this->name << " point is empty" << std::endl;
+		return ;
+	}
 	else
 	{
-		std::cout << "ClapTrap " << this->name << " attaks " << target << 
+		std::cout << "ClapTrap " << this->name << " attacks " << target << 
 			", causing " << this->AttackDamage << " points of damage!" << std::endl;
 		this->EnergyPoint--;
 	}

@@ -14,9 +14,9 @@ Fixed& Fixed::operator=(const Fixed& obj)
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &obj)
 		this->val = obj.getRawBits();
-	return (*this); // 주소값이 아닌 새로운 객체를 반환 -> 깊은 복사
+	return (*this);
 }
-Fixed::Fixed(const Fixed& obj) // 객체를 그대로 이용해서 복사 -> 메모리 낭비 방지, const로 읽기만 가능하게
+Fixed::Fixed(const Fixed& obj)
 {
 	std::cout << "Copy constructor called" << std::endl;
 	this->val = obj.getRawBits();

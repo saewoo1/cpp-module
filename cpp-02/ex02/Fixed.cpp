@@ -2,28 +2,28 @@
 
 Fixed::Fixed(void)
 {
-	std::cout << "Default constructor called" << std::endl;
+	// std::cout << "Default constructor called" << std::endl;
 	this->val = 0;
 }
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called" << std::endl;
+	// std::cout << "Destructor called" << std::endl;
 }
 Fixed::Fixed(const Fixed& obj)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	// std::cout << "Copy constructor called" << std::endl;
 	this->val = obj.getRawBits();
 }
 Fixed& Fixed::operator=(const Fixed& obj)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	// std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &obj)
 		this->val = obj.getRawBits();
 	return (*this);	
 }
 int Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
+	// std::cout << "getRawBits member function called" << std::endl;
 	return (this->val);
 }
 void Fixed::setRawBits(int const raw)
@@ -32,14 +32,14 @@ void Fixed::setRawBits(int const raw)
 }
 Fixed::Fixed(int num)
 {
-	std::cout << "Int constructor called" << std::endl;
+	// std::cout << "Int constructor called" << std::endl;
 	this->val = num << this->bit;
 }
 Fixed::Fixed(const float num)
 {
-	std::cout << "Float constructor called" << std::endl;
-	this->val = roundf(num * (1 << this->bit)); // float 자료형은 비트연산 불가능
-}	// 소수점 밑의 값이 사라지지 않도록 roundf
+	// std::cout << "Float constructor called" << std::endl;
+	this->val = roundf(num * (1 << this->bit));
+}
 
 int	Fixed::toInt(void) const
 {
@@ -47,7 +47,7 @@ int	Fixed::toInt(void) const
 }
 float	Fixed::toFloat(void) const
 {
-	return ((float)this->val / (1 << this->bit));
+	return (static_cast<float>(this->val) / (1 << this->bit));
 }
 
 std::ostream& operator<<(std::ostream &out, const Fixed &obj)
@@ -96,18 +96,22 @@ Fixed Fixed::operator*(const Fixed& obj) const
 	Fixed tmp(this->toFloat() * obj.toFloat());
 	return (tmp);
 }
-Fixed Fixed::operator/(const Fixed& obj) const // obj->val 0이ㄴ지 검검수수?
+Fixed Fixed::operator/(const Fixed& obj) const
 {
+	if (obj == 0) {
+		std::cout << "divison by 0..? bye..\n"; 
+		exit(1);
+	}
 	Fixed tmp(this->toFloat() / obj.toFloat());
 	return (tmp);
 }
 
-Fixed &Fixed::operator++(void) // 전위
+Fixed &Fixed::operator++(void)
 {
 	this->val++;
 	return (*this);
 }
-const Fixed Fixed::operator++(int) // 후위
+const Fixed Fixed::operator++(int)
 {
 	const Fixed tmp(*this);
 	this->val++;
