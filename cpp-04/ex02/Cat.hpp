@@ -17,7 +17,8 @@ class Cat : public Animal {
 
 		void makeSound(void) const;
 		std::string getType(void) const;
-
+		Brain *getBrain(void) const;
+		// void checkBrain(Cat const &other) const;
 };
 
 

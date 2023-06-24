@@ -17,8 +17,8 @@ class Dog : public Animal {
 
 		void makeSound(void) const;
 		std::string getType(void) const;
-		Brain *insertBrain(void) const;
-		void checkBrain(Dog const &other) const;
+		Brain *getBrain(void) const;
+		// void checkBrain(Dog const &other) const;
 };
 
 

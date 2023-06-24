@@ -2,20 +2,25 @@
 
 Cat::Cat(void) {
 	this->type = "Cat";
-	std::cout << "Cat... "+ this->type + " constructor is called" << std::endl;
+	this->brain = new Brain;
+	std::cout << "Cat... constructor is called with new brain" << std::endl;
 }
 Cat::~Cat(void)
 {
-	std::cout << "Cat " << type << " destructor is called" << std::endl;
+	delete this->brain;
+	std::cout << "Cat destructor is called and brain is gone" << std::endl;
 }
 Cat::Cat(const Cat &obj)
 {
 	this->type = obj.type;
-	std::cout << "Cat class " << this->type << " copy constructor is called" << std::endl;
+	this->brain = new Brain(*(obj.getBrain()));
+	std::cout << "Cat class copy constructor is called with new brain" << std::endl;
 }
 Cat& Cat::operator=(const Cat &obj) {
-	if (this != &obj)
-		this->type = obj.type;
+	this->type = obj.getType();
+	if (this->brain)
+		delete this->brain;
+	this->brain = new Brain(*(obj.getBrain()));
 	return (*this);
 }
 
@@ -27,3 +32,6 @@ std::string Cat::getType(void) const {
 	return (this->type);
 }
 
+Brain *Cat::getBrain(void) const {
+	return (this->brain);
+}

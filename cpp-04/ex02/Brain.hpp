@@ -13,6 +13,8 @@ class Brain {
 		Brain& operator=(const Brain &obj);
 
 		std::string *getIdeas(void) const;
+		void setIdeas(std::string contents, int i);
+		std::string getOneIdea(int i);
 };
 
 #endif
