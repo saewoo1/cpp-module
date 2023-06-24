@@ -3,7 +3,7 @@
 
 # include <iostream>
 
-class Animal
+class Animal // 순수 가상함수를 포함 -> 추상클래스 Animal, 상속받는 애들은 반드시 이를 재정의해야한다.
 {
 	protected:
 		std::string	type;
@@ -13,8 +13,8 @@ class Animal
 		Animal(const Animal &obj);
 		Animal &operator=(const Animal &obj);
 
-		virtual std::string getType(void) const;
-		virtual void makeSound(void) const;
+		std::string getType(void) const;
+		virtual void makeSound(void) const = 0;
 };
 
 #endif

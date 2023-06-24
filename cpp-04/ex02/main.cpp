@@ -7,13 +7,18 @@ int main(void)
 	std::string str;
 	std::string str2;
 	Animal *meta[10];
+	// Animal a; abstract class animal -> error!
 
 	for (size_t i = 0; i < 10; i++)
 	{
-		if (i % 2)
+		if (i % 2){
 			meta[i] = new Dog();
-		else
+			meta[i]->makeSound();
+		}
+		else {
 			meta[i] = new Cat();
+			meta[i]->makeSound();
+		}
 	}
 	std::cout << std::endl;
 	
