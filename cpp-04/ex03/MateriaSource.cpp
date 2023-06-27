@@ -5,7 +5,7 @@ MateriaSource::MateriaSource(void) {
 	for (int i = 0; i < 4; i++) {
 		this->inven[i] = 0;
 	}
-	std::cout << "MateriaSource is created\n";
+	// std::cout << "MateriaSource is created\n";
 }
 
 MateriaSource::MateriaSource(MateriaSource const &obj) {
@@ -13,7 +13,7 @@ MateriaSource::MateriaSource(MateriaSource const &obj) {
 		if (obj.inven[i])
 			this->inven[i] = obj.inven[i]->clone();
 	}
-	std::cout << "Copy MateriaSource is called\n";
+	// std::cout << "Copy MateriaSource is called\n";
 }
 
 MateriaSource & MateriaSource::operator=(MateriaSource const & obj) {
@@ -31,7 +31,7 @@ MateriaSource::~MateriaSource() {
 		if (this->inven[i])
 			delete this->inven[i];
 	}
-	std::cout << "MateriaSouce destructor is called\n";
+	// std::cout << "MateriaSouce destructor is called\n";
 }
 
 void MateriaSource::learnMateria(AMateria *m) {
@@ -39,11 +39,11 @@ void MateriaSource::learnMateria(AMateria *m) {
 	while (this->inven[i] != 0 && i < 4)
 		i++;
 	if (i >= 4) {
-		std::cout << "Can't learn more 4 Materia\n";
+		// std::cout << "Can't learn more 4 Materia\n";
 		return ;
 	}
 	this->inven[i] = m;
-	std::cout << "Materia " << m->getType() << " learned\n";
+	// std::cout << "Materia " << m->getType() << " learned\n";
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type) {
@@ -51,9 +51,9 @@ AMateria* MateriaSource::createMateria(std::string const & type) {
 	while (this->inven[i] && this->inven[i]->getType() != type && i < 4)
 		i++;
 	if (i >= 4 || !(this->inven[i])) {
-		std::cout << type << " materia is not exist\n";
+		// std::cout << type << " materia is not exist\n";
 		return NULL;
 	}
-	std::cout << "Materia " << type << " created\n";
+	// std::cout << "Materia " << type << " created\n";
 	return (this->inven[i]->clone());
 }
