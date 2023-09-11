@@ -3,11 +3,12 @@
 
 #include <iostream>
 #include <exception>
+#include "Bureaucrat.hpp"
 
 class Form {
     private:
         const std::string name;
-        bool signed;
+        bool sign;
         const int signGrade;
         const int executeGrade;
     public:
@@ -24,14 +25,19 @@ class Form {
             public:
                 const char * what(void) const throw();
         };
+        class AlreadySigned : public std::exception {
+            public:
+                const char * what(void) const throw();
+        };
 
-        void beSigned();
+        void checkGrade(int signGrade, int executeGrade);
 
         std::string getName() const;
-        bool getSigned() const;
+        bool getSign() const;
         int getSignGrade() const;
         int getExecuteGrade() const;
 
+        void beSigned(const Bureaucrat &obj);
 
 };
 
