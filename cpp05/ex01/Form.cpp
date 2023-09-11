@@ -4,26 +4,68 @@ Form::~Form() {
     std::cout << "destructor called" << std::endl;
 }
 
-Form::Form(const Form &obj)
-{
+Form::Form(): sign(false), signGrade(0), executeGrade(0) {
 }
 
-Form &Form::operator=(const Form &obj)
-{
-    // TODO: insert return statement here
+Form::Form(const Form &obj) : name(obj.getName()), sign(false), signGrade(obj.getSignGrade()), executeGrade(obj.getExecuteGrade()) {
 }
 
-Form::Form() {
-    // 걍 뒀던가..?
+
+Form &Form::operator=(const Form &obj) {
+    if (this != &obj) {
+        const_cast<std::string&>(this->name) = obj.getName();
+        const_cast<int&>(this->signGrade) = obj.getSignGrade();
+        const_cast<int&>(this->executeGrade) = obj.getExecuteGrade();
+        this->sign = obj.getSign();
+    }
 }
 
-Form::Form(const Form &obj) : name(obj.getName()), signed(obj.getSigned()), signGrade(obj.getSignGrade()), executeGrade(obj.getExecuteGrade()) {
-}
 
 const char * Form::GradeTooHighException::what(void) const throw() {
-    return "Grade too High";
+    return "<Form> Grade too High";
 }
 
 const char * Form::GradeTooLowException::what(void) const throw() {
-    return "Grade too Low";
+    return "<Form> Grade too Low";
+}
+
+const char * Form::AlreadySigned::what(void) const throw() {
+    return "<Form> already signed";
+}
+
+std::string Form::getName() const {
+    return this->name;
+}
+
+int Form::getSignGrade() const {
+    return this->signGrade;
+}
+
+int Form::getExecuteGrade() const {
+    return this->executeGrade;
+}
+
+/*
+요구 성적보다 높다면, sign -> true로 변환.
+*/
+void Form::beSigned(const Bureaucrat &obj)
+{
+    if (this->sign == true) 
+        throw AlreadySigned();
+    if (this->getSignGrade() < obj.getGrade())
+        throw GradeTooLowException();
+    this->sign = true;
+}
+
+bool Form::getSign() const {
+    return this->sign;
+}
+
+std::ostream& operator<<(std::ostream &out, const Form &obj) {
+    out << obj.getName() << "Form sign is " << std::boolalpha << obj.getSign() 
+        << ", signGrade : " << obj.getSignGrade() 
+        << ", executeGrade : " << obj.getExecuteGrade()
+        << std::endl;
+
+    return out;
 }

@@ -29,3 +29,8 @@ int main() {
     }
     return (0);
 }
+/*
+signForm 함수 내에서 beSigned 함수를 호출하도록 만들고, 
+이와 같은 과정을 signForm 함수 내에서 try-catch로 묶어서 결과까지 출력하도록 만들면 
+main 함수에서 많은 코드들을 아낄 수 있다.
+*/
