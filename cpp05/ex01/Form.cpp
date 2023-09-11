@@ -17,7 +17,6 @@ Form::Form(std::string name, int signGrade, int executeGrade) : name(name), sign
     checkGrade(executeGrade);
 }
 
-
 Form &Form::operator=(const Form &obj) {
     if (this != &obj) {
         const_cast<std::string&>(this->name) = obj.getName();
@@ -34,6 +33,7 @@ void Form::checkGrade(int grade) {
     if (grade < 1)
         throw GradeTooHighException();
 }
+
 
 const char * Form::GradeTooHighException::what(void) const throw() {
     return "<Form> Grade too High";
@@ -59,7 +59,11 @@ int Form::getExecuteGrade() const {
     return this->executeGrade;
 }
 
-void Form::beSigned(const Bureaucrat &obj) {
+/*
+요구 성적보다 높다면, sign -> true로 변환.
+*/
+void Form::beSigned(const Bureaucrat &obj)
+{
     if (this->sign == true) 
         throw AlreadySigned();
     if (this->getSignGrade() < obj.getGrade())
@@ -73,6 +77,7 @@ bool Form::getSign() const {
 
 std::ostream& operator<<(std::ostream &out, const Form &obj) {
     out << obj.getName() << " Form sign is " << std::boolalpha << obj.getSign() 
+
         << ", signGrade : " << obj.getSignGrade() 
         << ", executeGrade : " << obj.getExecuteGrade()
         << std::endl;
