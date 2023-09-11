@@ -26,7 +26,6 @@ class Bureaucrat {
         ~Bureaucrat();
         void increaseGrade();
         void decresaeGrade();
-        void signForm();
 };
 
 std::ostream& operator<<(std::ostream &out, const Bureaucrat &obj);

@@ -1,8 +1,11 @@
 #ifndef BUREAUCAT_HPP
 # define BUREAUCAT_HPP
 
-#include <iostream>
-#include <exception>
+# include <iostream>
+# include <exception>
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat {
     private:
@@ -26,6 +29,8 @@ class Bureaucrat {
         ~Bureaucrat();
         void increaseGrade();
         void decresaeGrade();
+        void signForm(Form &form) const;
+
 };
 
 std::ostream& operator<<(std::ostream &out, const Bureaucrat &obj);
