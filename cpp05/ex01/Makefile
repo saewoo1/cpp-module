@@ -1,6 +1,6 @@
-NAME = Bureaucrat
+NAME = Form
 
-SRCS = Bureaucrat.cpp main.cpp
+SRCS = Form.cpp Bureaucrat.cpp main.cpp
 
 CXX = c++
 

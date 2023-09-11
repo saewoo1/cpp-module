@@ -1,5 +1,5 @@
-#ifndef BUREAUCRAT_HPP
-# define BUREAUCRAT_HPP
+#ifndef BUREAUCAT_HPP
+# define BUREAUCAT_HPP
 
 #include <iostream>
 #include <exception>
@@ -19,7 +19,10 @@ class Bureaucrat {
             public:
                 const char * what(void) const throw();
         };
+        Bureaucrat &operator=(const Bureaucrat &obj);
         Bureaucrat(const std::string name, int grade);
+        Bureaucrat();
+        Bureaucrat(const Bureaucrat &obj);
         ~Bureaucrat();
         void increaseGrade();
         void decresaeGrade();

@@ -19,10 +19,14 @@ class Bureaucrat {
             public:
                 const char * what(void) const throw();
         };
+        Bureaucrat &operator=(const Bureaucrat &obj);
         Bureaucrat(const std::string name, int grade);
+        Bureaucrat();
+        Bureaucrat(const Bureaucrat &obj);
         ~Bureaucrat();
         void increaseGrade();
         void decresaeGrade();
+        void signForm();
 };
 
 std::ostream& operator<<(std::ostream &out, const Bureaucrat &obj);
