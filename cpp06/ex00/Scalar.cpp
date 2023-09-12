@@ -2,9 +2,15 @@
 
 Scalar::Scalar() {}
 
-Scalar::Scalar(const Scalar &obj) {*this = obj;}
+Scalar::~Scalar() {}
+
+Scalar::Scalar(const Scalar &obj) {
+	*this = obj;
+}
 
 Scalar& Scalar::operator=(const Scalar &obj) {
+	if (this == &obj)
+		return *this;
 	return *this;
 }
 
