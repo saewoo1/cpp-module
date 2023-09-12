@@ -28,7 +28,7 @@ static AForm *newShrubbery(const std::string target) {
 	return new ShrubberyCreationForm(target);
 }
 
-static AFrom *newPresidential(const std::string target) {
+static AForm *newPresidential(const std::string target) {
 	return new PresidentialPardonForm(target);
 }
 
