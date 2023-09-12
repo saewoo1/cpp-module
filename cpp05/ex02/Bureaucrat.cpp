@@ -63,7 +63,7 @@ std::ostream& operator<<(std::ostream &out, const Bureaucrat &obj) {
     return out;
 }
 
-void Bureaucrat::signForm(Form &form) const {
+void Bureaucrat::signForm(AForm &form) const {
     try
     {
         form.beSigned(*this);
@@ -75,4 +75,12 @@ void Bureaucrat::signForm(Form &form) const {
                     << " because " << e.what() << '\n';
     }
     
+}
+
+void Bureaucrat::executeForm(const AForm &form) const {
+    try {
+        form.beExecuted(*this);
+    } catch (std::exception &e) {
+        std::cout << e.what() << std::endl;
+    }
 }

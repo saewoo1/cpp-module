@@ -60,7 +60,8 @@ int Form::getExecuteGrade() const {
 }
 
 /*
-요구 성적보다 높다면, sign -> true로 변환.
+해당 관료의 등급이 더 높다면(수가 더 작다면),
+폼에 사인을 할 수 있다.
 */
 void Form::beSigned(const Bureaucrat &obj)
 {
