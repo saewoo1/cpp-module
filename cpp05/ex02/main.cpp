@@ -1,40 +1,44 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int main() {
+    Bureaucrat saewoo("saewoo", 150);
+    Bureaucrat tokki("tokki", 1);
+
+    std::cout << std::endl;
+
+    ShrubberyCreationForm shrubbery("test");
+    PresidentialPardonForm presidental("test");
+    RobotomyRequestForm robotomy("test");
+
+    std::cout << std::endl;
+
+    tokki.executeForm(shrubbery);
+    shrubbery.beSigned(tokki);
+    tokki.executeForm(shrubbery);
+
+    std::cout << std::endl;
+
+    tokki.executeForm(presidental);
+    presidental.beSigned(tokki);
+    tokki.executeForm(presidental);
+
+    std::cout << std::endl;
+
+    tokki.executeForm(robotomy);
+    robotomy.beSigned(tokki);
+    tokki.executeForm(robotomy);
+    std::cout << std::endl;
+
     try {
-        try {
-            Form test("hihi", 199, 45);
-
-        } catch(const std::exception &e) {
-            std::cerr << e.what() << '\n';
-        }
-
-        try {
-            Form test2("byebye", 24, 0);
-
-        } catch(const std::exception &e) {
-            std::cerr << e.what() << '\n';
-        }
-
-        Bureaucrat sohyupar("sohyupar", 120);
-        Form a("FormA", 150, 44);
-        Form b("FormB", 119, 140);
-
-        std::cout << sohyupar << std::endl;
-        std::cout << a << std::endl;
-        std::cout << b << std::endl;
-
-        sohyupar.signForm(a);
-        sohyupar.signForm(b);
-
-    } catch(const std::exception &e) {
-        std::cerr << e.what() << '\n';
+        saewoo.executeForm(shrubbery);
+    } catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
     }
+
     return (0);
+
 }
-/*
-signForm 함수 내에서 beSigned 함수를 호출하도록 만들고, 
-이와 같은 과정을 signForm 함수 내에서 try-catch로 묶어서 결과까지 출력하도록 만들면 
-main 함수에서 많은 코드들을 아낄 수 있다.
-*/
