@@ -25,7 +25,6 @@ Base *generate(void) {
 }
 
 void identify(Base* p) {
-    try {
         if (dynamic_cast<A*>(p) != NULL) {
             std::cout << "pointer is A!" << std::endl;
         } else if (dynamic_cast<B*>(p) != NULL) {
@@ -35,9 +34,6 @@ void identify(Base* p) {
         } else {
             std::cout << "can't identify... "<< std::endl;
         }
-    } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-    }
 }
 
 void identify(Base &p) {
@@ -46,7 +42,6 @@ void identify(Base &p) {
         std::cout << "reference is A" << std::endl;
         static_cast<void>(a);
     } catch(std::exception &e) {
-        std::cout << e.what() << std::endl;
     } 
     
     try {
@@ -54,7 +49,6 @@ void identify(Base &p) {
         std::cout << "reference is B" << std::endl;
         static_cast<void>(b);
     } catch(std::exception &e) {
-        std::cout << e.what() << std::endl;
     }
 
     try {
@@ -62,7 +56,6 @@ void identify(Base &p) {
         std::cout << "reference is C" << std::endl;
         static_cast<void>(c);
     } catch(std::exception &e) {
-        std::cout << e.what() << std::endl;
     }
 
 }

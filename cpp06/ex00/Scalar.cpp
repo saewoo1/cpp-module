@@ -1,4 +1,5 @@
 #include "Scalar.hpp"
+#include <cmath>
 
 Scalar::Scalar() {}
 
@@ -22,6 +23,7 @@ void Scalar::ScalarConverter(const std::string &literal) {
 	int toInt = 0;
 	float toFloat = 0;
 	double toDouble = 0;
+	double judge = 0;
 
 	// toChar
 	if (literal.size() == 1 && std::isprint(literal[0]) && !std::isdigit(literal[0])) {
@@ -34,7 +36,9 @@ void Scalar::ScalarConverter(const std::string &literal) {
 	}
 
 	// string -> c-style string.직접 접근, null 문자 포함
-	toInt = std::atoi(literal.c_str());
+	judge = std::stod(literal);
+	toInt = std::atoi(literal.c_str()); // 여기서 오버플로우 추가 처리 필요할듯...
+
 
 	if (literal[literal.length() - 1] == 'f') {
 		toFloat = std::atof(literal.c_str());
@@ -62,7 +66,11 @@ void Scalar::ScalarConverter(const std::string &literal) {
 	}
 
 	std::cout << "char: " << toChar << std::endl;
+
 	if (toChar == "impossible") {
+		std::cout << "int: impossible" << std::endl;
+	}
+	else if (judge < -2147483648 || judge > 2147483647) {
 		std::cout << "int: impossible" << std::endl;
 	} else {
 		std::cout << "int: " << toInt << std::endl;
