@@ -2,6 +2,8 @@
 # define EASYFIND_HPP
 
 # include <algorithm>
+# include <iterator>
+# include <iostream>
 
 
 //find는 찾으면 그 해당 지점의 첫번 째 idx를, 못찾으면 end를 반환한다.
