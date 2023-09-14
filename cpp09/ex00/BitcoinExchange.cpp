@@ -55,6 +55,7 @@ bool BitcoinExchange::validateDate(std::string date)
             if (month < 1 || month > 12) return false;
         } else if (i == 2) {
             std::istringstream(splitted) >> day;
+            if (day < 1 || day > 31) return false;
             //윤달 계산.. 어케하노
         }
         
