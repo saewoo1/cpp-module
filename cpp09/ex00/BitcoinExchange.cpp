@@ -44,6 +44,30 @@ void BitcoinExchange::checkCsvFile() {
     }
 }
 
+void BitcoinExchange::checkInputFile(char *file) {
+    std::fstream fileStream;
+    std::string line;
+
+    fileStream.open(file, std::ifstream::in);
+    if (!fileStream.is_open()) {
+        std::cout << "Error: can't open!!!" << std::endl;
+        throw Error();
+    }
+
+    if (std::getline(fileStream, line).eof()) {
+        std::cout << "Error: empty file!!" << std::endl;
+        throw Error();
+    }
+
+    if (line.compare("date | value") != 0) {
+        std::cout << "Error: format error!" << std::endl;
+        throw Error();
+    }
+
+    line.erase();
+    fileStream.close();
+}
+
 //split으로 타입 검수, 윤년 검수
 // 짝수 월일 땐 6월 전까진 30일까지, 홀수 월일땐 7월 후부터 30일까지
 bool BitcoinExchange::validateDate(std::string date)
