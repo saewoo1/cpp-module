@@ -73,6 +73,8 @@
 		"__functional_03": "cpp",
 		"memory_resource": "cpp",
 		"__verbose_abort": "cpp",
-		"list": "cpp"
+		"list": "cpp",
+		"__tree": "cpp",
+		"map": "cpp"
 	}
 }

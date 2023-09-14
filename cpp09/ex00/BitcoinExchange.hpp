@@ -3,6 +3,7 @@
 
 # include <map>
 # include <exception>
+# include <iostream>
 
 //key - value 사용이라 map이 맞지 않을가 하는,,..
 class BitcoinExchange {
@@ -11,6 +12,9 @@ class BitcoinExchange {
         
         void checkCsvFile();
         void checkInputFile(char *file);
+        bool validateDate(std::string date);
+        bool validateValue(std::string value);
+
         
     public:
         BitcoinExchange();
