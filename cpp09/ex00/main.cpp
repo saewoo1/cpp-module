@@ -6,4 +6,7 @@ int main(int ac, char **av) {
         std::cout << "bad argument" << std::endl;
         exit(1);
     }
+
+    BitcoinExchange *test = new BitcoinExchange();
+    test->btc(av[1]);
 }

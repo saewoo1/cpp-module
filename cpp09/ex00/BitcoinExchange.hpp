@@ -31,9 +31,8 @@ class BitcoinExchange {
 
         class Error : public std::exception {
             public:
-                const char *what() const throw();
+                const char * what(void) const throw();
         };
-
 };
 
 #endif

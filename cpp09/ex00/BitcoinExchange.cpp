@@ -15,32 +15,26 @@ void BitcoinExchange::checkCsvFile() {
         std::cout << "Error: invalid database file" << std::endl;
         throw Error();
     }
+
     if (std::getline(csv, read).eof()) {
         std::cout << "Error: empty database file" << std::endl;
         throw Error();
     }
-
-    //첫 줄 읽기
-    std::getline(csv, read);
-    if (read.compare("date,exchange_rate") != 0) {
-
-        std::cout << "Error: invalid first Line" << std::endl;
-        throw Error();
-    }
-
     while (std::getline(csv, read)) {
-        comma_idx = read.find(',');
-        if (!validateDate(read.substr(0, comma_idx))) {
-            std::cout << "Error: invalid date" << std::endl;
-            throw Error();
-        }
+        if (read != "date,exchange_rate") {
+            comma_idx = read.find(',');
+            if (!validateDate(read.substr(0, comma_idx))) {
+                std::cout << "Error: invalid csv date" << std::endl;
+                throw Error();
+            }
 
-        if (!validateValue(read.substr(comma_idx + 1, read.length()))) {
-            std::cout << "Error: invalid value" << std::endl;
-            throw Error();
+            if (!validateValue(read.substr(comma_idx + 1, read.length()))) {
+                std::cout << "Error: invalid csv value" << std::endl;
+                throw Error();
+            }
+            std::istringstream(read.substr(comma_idx + 1, read.length())) >> value;
+            bitcoinData[read.substr(0, comma_idx)] = value;
         }
-        std::istringstream(read.substr(comma_idx + 1, read.length())) >> value;
-        bitcoinData[read.substr(0, comma_idx)] = value;
     }
 }
 
@@ -105,9 +99,13 @@ bool BitcoinExchange::validateValue(std::string value)
 {
     char *ptr = NULL;
     double val = std::strtod(value.c_str(), &ptr);
-    if (val == 0.0 && !std::isdigit(value[0])) return false;
+
+    if (val == 0.0 && !std::isdigit(value[0])) {
+        std::cout << val << std::endl;    
+        return false;
+    }
     if (*ptr && std::strcmp(ptr, "f")) return false;
-    if (val < 0 || val > 1000) return false;
+    if (val < 0) return false;
     return true;
 }
 
@@ -139,7 +137,7 @@ void BitcoinExchange::validateInformation(std::string inputLine) {
         }
         if (i == 2) {
             if (!checkValueInputFile(value)) return ;
-            val == std::strtod(inputLine.c_str(), NULL);
+            val = std::strtod(inputLine.c_str(), NULL);
             if (val < 1 || val > 1000) {
                 std::cout << "Error: too large" << std::endl;
                 return ;
@@ -177,31 +175,63 @@ void BitcoinExchange::printResult(std::string date, float value) {
     (value == static_cast<int>(value)) ?
       std::cout << date << " => " << static_cast<int>(value) << " = " <<  res << std::endl 
     : std::cout << date << " => " << value << " = " << res << std::endl;
+}
+
+BitcoinExchange::BitcoinExchange() {
+
+}
+
+BitcoinExchange::~BitcoinExchange() {
+    bitcoinData.clear();
+    std::cout << "destructor called" << std::endl;
+}
 
 
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &obj) {
+    bitcoinData = obj.bitcoinData;
+}
+
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &obj) {
+    if (this == &obj)
+        return *this;
+    bitcoinData = obj.bitcoinData;
+    return *this;
+}
+
+void BitcoinExchange::btc(char *file) {
+    try {
+        checkCsvFile();
+        checkInputFile(file);
+    }
+    catch(...){
+        return ;
+    }
+    inputBitcoin(file);
+    
 }
 
 bool BitcoinExchange::checkValueInputFile(const std::string &str) {
     char *ptr = NULL;
     double value = std::strtod(str.c_str(), &ptr);
 
+    std::cout << value << std::endl;
     if (str.find('.', 0) == 0 || str.find('.', str.length() - 1 != std::string::npos)) {
-        std::cout << "Error: please input only number" << std::endl;
+        std::cout << "Error: please input only number1" << std::endl;
         return false;
     }
 
     if (value == 0.0 && !std::isdigit(str[0])) {
-        std::cout << "Error: please input only number" << std::endl;
+        std::cout << "Error: please input only number2" << std::endl;
         return false;
     }
 
     if (*ptr && std::strcmp(ptr, "f")) {
-        std::cout << "Error: please input only number" << std::endl;
+        std::cout << "Error: please input only number3" << std::endl;
         return false;
     }
     
     if (value < 0) {
-        std::cout << "Error: please input only number" << std::endl;
+        std::cout << "Error: please input only number4" << std::endl;
         return false;
     }
 
@@ -212,12 +242,11 @@ bool BitcoinExchange::checkValueInputFile(const std::string &str) {
     return true;
 }
 
-
 bool BitcoinExchange::checkDateInputFile(const std::string &date) {
     std::string splitted;
     std::istringstream ss(date);
     int year, month, day;
-    int i;
+    int i = 0;
 
     if (date.find('-', date.length() - 1) != std::string::npos) {
         std::cout << "Error: invalid date forman" << date << std::endl;
@@ -258,10 +287,10 @@ bool BitcoinExchange::checkDateInputFile(const std::string &date) {
                 std::cout << "Error: invalid day" << date << std::endl;
                 return false;
             }
+          }
         }
         i++;
     }
-
     if (i != 3) {
         std::cout << "Error: invalid date type" << date << std::endl;
         return false;
@@ -269,18 +298,7 @@ bool BitcoinExchange::checkDateInputFile(const std::string &date) {
     return true;
 }
 
-BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &obj)
+const char *BitcoinExchange::Error::what(void) const throw()
 {
-    // TODO: insert return statement here
-}
-
-void BitcoinExchange::btc(char *file)
-{
-    try {
-        checkCsvFile();
-        checkInputFile(file);
-    } catch(...) {
-        return ;
-    }
-    inputBitcoin(file);
+    return nullptr;
 }
