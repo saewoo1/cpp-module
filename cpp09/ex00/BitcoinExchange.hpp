@@ -14,6 +14,11 @@ class BitcoinExchange {
         void checkInputFile(char *file);
         bool validateDate(std::string date);
         bool validateValue(std::string value);
+        void inputBitcoin(char *file);
+        void validateInformation(std::string str);
+        bool checkDateInputFile(const std::string &date);
+        bool checkValueInputFile(const std::string &value);
+        void printResult(std::string date, float value);
 
         
     public:
@@ -22,7 +27,7 @@ class BitcoinExchange {
         BitcoinExchange(const BitcoinExchange &obj);
         BitcoinExchange& operator=(const BitcoinExchange &obj);
 
-        void validation(char *file);
+        void btc(char *file);
 
         class Error : public std::exception {
             public:
