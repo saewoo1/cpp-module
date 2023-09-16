@@ -102,7 +102,7 @@ void AForm::beExecuted(const Bureaucrat &person) const {
     }
 
     std::cout << person.getName() << " has executed " << _name << std::endl;
-    executeAction(person);
+    execute(person);
 
 }
 

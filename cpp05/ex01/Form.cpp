@@ -36,15 +36,15 @@ void Form::checkGrade(int grade) {
 
 
 const char * Form::GradeTooHighException::what(void) const throw() {
-    return "<Form> Grade too High";
+    return "Grade too High";
 }
 
 const char * Form::GradeTooLowException::what(void) const throw() {
-    return "<Form> Grade too Low";
+    return "Grade too Low";
 }
 
 const char * Form::AlreadySigned::what(void) const throw() {
-    return "<Form> already signed";
+    return "already signed";
 }
 
 std::string Form::getName() const {

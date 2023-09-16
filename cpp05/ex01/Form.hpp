@@ -40,6 +40,8 @@ class Form {
         int getSignGrade() const;
         int getExecuteGrade() const;
 
+        //form의 sign을 true. 조건은 관료의 grade가 form보다 같거나 높다면
+        //grade가 너무 낮다면, Form의 lowexception을 던지자.
         void beSigned(const Bureaucrat &obj);
 
 };

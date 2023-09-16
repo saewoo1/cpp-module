@@ -23,7 +23,7 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &o
 	return *this;
 }
 
-void RobotomyRequestForm::executeAction(const Bureaucrat &bureaucrat) const {
+void RobotomyRequestForm::execute(const Bureaucrat &bureaucrat) const {
 	if (bureaucrat.getGrade() > this->getExecuteGrade())
 		throw Bureaucrat::GradeTooLowException();
 	else if (this->getSign() == false) {

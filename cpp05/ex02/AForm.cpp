@@ -94,15 +94,15 @@ void AForm::beSigned(const Bureaucrat &obj)
 void AForm::beExecuted(const Bureaucrat &person) const {
     if (_sign == false) {
         std::cout << person.getName() << " can't execute " << _name << std::endl;
-        throw AForm::NotSigned();
+        throw NotSigned();
     }
     if (_executeGrade < person.getGrade()) {
         std::cout << person.getName() << " can't execute " << _name << std::endl;
-        throw AForm::GradeTooLowException();
+        throw GradeTooLowException();
     }
 
     std::cout << person.getName() << " has executed " << _name << std::endl;
-    this->executeAction(person);
+    this->execute(person);
 
 }
 

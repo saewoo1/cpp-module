@@ -26,7 +26,7 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 	return *this;
 }
 
-void PresidentialPardonForm::executeAction(const Bureaucrat &obj) const {
+void PresidentialPardonForm::execute(const Bureaucrat &obj) const {
 	if (obj.getGrade() > this->getExecuteGrade())
 		throw Bureaucrat::GradeTooLowException();
 	else if (this->getSign() == false) {
@@ -34,5 +34,5 @@ void PresidentialPardonForm::executeAction(const Bureaucrat &obj) const {
 		throw NotSigned();
 	}
 
-	std::cout << this->getTarget() << " has been pardoned by presideont " << std::endl;
+	std::cout << this->getTarget() << " has been pardoned by president " << std::endl;
 }

@@ -50,7 +50,7 @@ class AForm {
         void beSigned(const Bureaucrat &obj);
         void beExecuted(const Bureaucrat &obj) const;
 
-        virtual void executeAction(const Bureaucrat &obj) const = 0;
+        virtual void execute(const Bureaucrat &obj) const = 0;
 
 };
 
