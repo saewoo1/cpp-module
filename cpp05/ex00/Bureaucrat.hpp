@@ -17,12 +17,14 @@ class Bureaucrat {
         
         class GradeTooHighException : public std::exception {
             public:
-                virtual const char * what(void) const throw();
+                const char * what(void) const throw();
         };
         class GradeTooLowException : public std::exception {
             public:
-                virtual const char * what(void) const throw();
+                const char * what(void) const throw();
         };
+
+        void checkGrade();
 
         Bureaucrat &operator=(const Bureaucrat &obj);
         Bureaucrat(const std::string name, int grade);
