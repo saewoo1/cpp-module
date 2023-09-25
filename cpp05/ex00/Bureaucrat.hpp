@@ -37,3 +37,10 @@ class Bureaucrat {
 std::ostream& operator<<(std::ostream &out, const Bureaucrat &obj);
 
 #endif
+
+/*
+const_cast
+type 불일치 시 인자 전달이 불가능함.
+포인터 / 참조형의 const를 잠시 풀어주는데 사용하자.
+
+*/

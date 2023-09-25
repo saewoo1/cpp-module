@@ -34,8 +34,29 @@ void ShrubberyCreationForm::execute(const Bureaucrat &obj) const {
 		std::ofstream out;
 
 		out.open((this->getTarget() + "_shrubbery").c_str(), std::ofstream::in | std::ofstream::trunc);
+		if (!out.good())
+			std::cerr << "Error while opening..." << std::endl;
 
 
-		out<<std::endl;
+		out<<
+			"              * *\n"
+			"           *    *  *\n"
+			"      *  *    *     *  *\n"
+			"     *     *    *  *    *\n"
+			" * *   *    *    *    *   *\n"
+			" *     *  *    * * .#  *   *\n"
+			" *   *     * #.  .# *   *\n"
+			"  *     \"#.  #: #\" * *    *\n"
+			" *   * * \"#. ##\"       *\n"
+			"   *       \"###\n"
+			"             \"##\n"
+			"              ##.\n"
+			"              .##:\n"
+			"              :###\n"
+			"              ;###\n"
+			"            ,####.\n"
+			"/\\/\\/\\/\\/\\/.######.\\/\\/\\/\\/\\\n";
+
+		out.close();
 	}
 }

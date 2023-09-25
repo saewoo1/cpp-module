@@ -5,7 +5,13 @@
 
 class Scalar {
 	public:
-		static void ScalarConverter(const std::string& literal);
+		static void convert(const std::string &literal);
+		static double convertString(const std::string &literal);
+
+		static void printChar(const std::string& str);
+		static void printInt(const std::string& str);
+		static void printFloat(const std::string& str);
+		static void printDouble(const std::string& str);
 	private:
 		~Scalar();
 		Scalar();

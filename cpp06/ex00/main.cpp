@@ -1,11 +1,13 @@
 #include "Scalar.hpp"
 
 int main(int ac, char **av) {
-	if (ac == 1) {
-		std::cout << "please input param!" << std::endl;
+
+	(void)av;
+	if (ac == 2) {
+		Scalar::convert(av[1]);
+		return (0);
 	}
-
-	Scalar::ScalarConverter(av[1]);
-
+	else
+		std::cout << "Wrong Argument count" << std::endl;
 	return (0);
 }

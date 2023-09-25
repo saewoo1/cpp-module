@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
@@ -16,11 +16,6 @@ int main() {
     std::cout << *form1 << std::endl;
     std::cout << *form2 << std::endl;
     std::cout << *form3 << std::endl;
-
-    delete form1;
-    delete form2;
-    delete form3;
-
 
     return (0);
 

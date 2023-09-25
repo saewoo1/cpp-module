@@ -1,5 +1,8 @@
 #include "Scalar.hpp"
 #include <cmath>
+#include <iomanip>
+#include <cstring>
+#include <sstream>
 
 Scalar::Scalar() {}
 
@@ -15,77 +18,93 @@ Scalar& Scalar::operator=(const Scalar &obj) {
 	return *this;
 }
 
-void Scalar::ScalarConverter(const std::string &literal) {
-	std::string pseudoType[6] = {
-		"-inff", "+inff", "nanf", "-inf", "+inf", "nan"
-	};
-	std::string toChar = "";
-	int toInt = 0;
-	float toFloat = 0;
-	double toDouble = 0;
-	double judge = 0;
+void Scalar::convert(const std::string &input) {
+	printChar(input);
+	printInt(input);
+	printFloat(input);
+	printDouble(input);
+}
 
-	// toChar
-	if (literal.size() == 1 && std::isprint(literal[0]) && !std::isdigit(literal[0])) {
-		toChar = literal[0];
-		std::cout << "char: " << toChar << std::endl;
-		std::cout << "int: " << static_cast<int>(toChar[0]) << std::endl;
-		std::cout << "float: " << static_cast<float>(toChar[0]) << ".0f" << std::endl;
-		std::cout << "double:" << static_cast<double>(toChar[0]) << ".0" << std::endl;
-		return ;
-	}
+double Scalar::convertString(const std::string &input) {
+	double num = 0.0;
 
-	// string -> c-style string.직접 접근, null 문자 포함
-	judge = std::stod(literal);
-	toInt = std::atoi(literal.c_str()); // 여기서 오버플로우 추가 처리 필요할듯...
+	std::istringstream iss(input);
+	return num;
+}
 
+void Scalar::printChar(const std::string &literal) {
+	int num;
 
-	if (literal[literal.length() - 1] == 'f') {
-		toFloat = std::atof(literal.c_str());
-		toDouble = static_cast<double>(toFloat);
-	} else {
-		toDouble = std::atof(literal.c_str());
-		toFloat = static_cast<float>(toDouble);
-	}
-
-	// 의사타입인지 판별돌기
-	for (int i = 0; i < 6; i++) {
-		if (literal == pseudoType[i]) {
-			toChar = "impossible";
-			break;
+	if (literal ==  "nan" || literal == "nanf" || literal == "-inff" || literal == "-inf" || literal == "+inff" || literal == "+inf")
+		std::cout << "char: impossible" << std::endl;
+	else if(isdigit(literal[0] || literal[0] == '-')) {
+		if (literal[literal.length() - 1] == 'f') {
+			num = static_cast<int>(convertString(literal.substr(0, literal.length() - 1)));
+			std::cout << "char: " << "'" << static_cast<char>(num) << "'" << std::endl;
+		}
+		else {
+			num = static_cast<int>(convertString(literal));
+			if ((num >= 0 && num <= 31) || num == 127)
+				std::cout << "char: Non displayable" << std::endl;
+			else if(num >= 32 && num <= 126)
+				std::cout << "char: " << "'" << static_cast<char>(num) << "'" << std::endl;
+			else
+				std::cout << "char: impossible" << std::endl;
 		}
 	}
+}
 
-	//int가 출력 가능한 문자인지 판별하기
-	if (toChar == "" && std::isprint(toInt)) {
-		toChar = "'";
-		toChar += static_cast<char>(toInt);
-		toChar += "'";
-	} else if (toChar == "") {
-		toChar = "Non displayable";
-	}
+void Scalar::printInt(const std::string &literal) {
+	long num;
 
-	std::cout << "char: " << toChar << std::endl;
-
-	if (toChar == "impossible") {
+	if (literal ==  "nan" || literal == "nanf" || literal == "-inff" || literal == "-inf" || literal == "+inff" || literal == "+inf")
 		std::cout << "int: impossible" << std::endl;
+	else if(isdigit(literal[0]) || literal[0] == '-') {
+		if(literal[literal.length() - 1] == 'f') {
+			num = static_cast<int>(convertString(literal.substr(0, literal.length() - 1)));
+			std::cout << "int: " << num << std::endl;
+		}
+		else {
+			num = static_cast<long>(convertString(literal));
+			if (num > 2147483647 || num < -2147483648)
+				std::cout << "int: impossible" << std::endl;
+			else
+				std::cout << "int: " << num << std::endl;
+		}
 	}
-	else if (judge < -2147483648 || judge > 2147483647) {
-		std::cout << "int: impossible" << std::endl;
-	} else {
-		std::cout << "int: " << toInt << std::endl;
-	}
+}
 
-	if (toChar == "impossible" && toFloat == 0) {
+void Scalar::printFloat(const std::string& literal) {
+	float num;
+
+	if (literal == "nanf" || literal == "-inff" || literal == "+inff")
 		std::cout << "float: impossible" << std::endl;
+	else if(literal == "nan" || literal == "-inf" || literal == "+inf")
+		std::cout << "float: " << literal + 'f' << std::endl;
+	else if(isdigit(literal[0]) || literal[0] == '-') {
+		if (literal[literal.length() - 1] == 'f')
+			std::cout << "float: " << literal << std::endl;
+		else {
+			num = static_cast<float>(convertString(literal));
+			std::cout << std::fixed << "float: " << std::setprecision(1) << num << "f" << std::endl;
+		}
+	}
+}
+
+void Scalar::printDouble(const std::string& literal) {
+	double num;
+
+	if (literal == "nanf" || literal == "-inff" || literal == "+inff")
 		std::cout << "double: impossible" << std::endl;
-	} else {
-		if (toChar != "impossible" && toFloat - static_cast<int>(toFloat) == 0) {
-			std::cout << "float: " << toFloat << ".0f" << std::endl;
-			std::cout << "double: " << toDouble << ".0" << std::endl;
-		} else {
-			std::cout << "float: " << toFloat << "f" << std::endl;
-			std::cout << "double: " << toDouble << std::endl;
+	else if(literal == "nan" || literal == "-inf" || literal == "+inf")
+		std::cout << "double: " << literal + 'f' << std::endl;
+	else if(isdigit(literal[0]) || literal[0] == '-') {
+		if(literal[literal.length() - 1] == 'f') {
+			std::cout << "double: " << literal.substr(0, literal.length() - 1) << std::endl;
+		}
+		else {
+			num = static_cast<double>(convertString(literal));
+			std::cout << std::fixed << "double: " << std::setprecision(1) << num << std::endl;
 		}
 	}
 }
