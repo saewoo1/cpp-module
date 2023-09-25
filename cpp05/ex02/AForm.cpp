@@ -18,7 +18,7 @@ AForm::AForm(const AForm &obj)
     std::cout << "copy Form created!" << std::endl;
 }
 
-AForm::AForm(const std::string name, const std::string target, int signGrade, int executeGrade) 
+AForm::AForm(const std::string& name, const std::string& target, int signGrade, int executeGrade) 
                 : _name(name), 
                 _target(target),
                 _sign(false),
@@ -48,19 +48,19 @@ void AForm::checkGrade(int grade) {
 
 
 const char * AForm::GradeTooHighException::what(void) const throw() {
-    return "<AForm> Grade too High";
+    return "Grade too High";
 }
 
 const char * AForm::GradeTooLowException::what(void) const throw() {
-    return "<AForm> Grade too Low";
+    return "Grade too Low";
 }
 
 const char * AForm::AlreadySigned::what(void) const throw() {
-    return "<AForm> already signed";
+    return "already signed";
 }
 
 const char * AForm::NotSigned::what(void) const throw() {
-    return "<AForm> not signed";
+    return "not signed";
 }
 
 const std::string& AForm::getName() const {
@@ -79,9 +79,7 @@ int AForm::getExecuteGrade() const {
     return _executeGrade;
 }
 
-/*
-요구 성적보다 높다면, sign -> true로 변환.
-*/
+
 void AForm::beSigned(const Bureaucrat &obj)
 {
     if (_sign == true) 
@@ -92,18 +90,11 @@ void AForm::beSigned(const Bureaucrat &obj)
 }
 
 void AForm::beExecuted(const Bureaucrat &person) const {
-    if (_sign == false) {
-        std::cout << person.getName() << " can't execute " << _name << std::endl;
+    if (_sign == false)
         throw NotSigned();
-    }
-    if (_executeGrade < person.getGrade()) {
-        std::cout << person.getName() << " can't execute " << _name << std::endl;
+    if (_executeGrade < person.getGrade()) 
         throw GradeTooLowException();
-    }
-
-    std::cout << person.getName() << " has executed " << _name << std::endl;
     this->execute(person);
-
 }
 
 bool AForm::getSign() const {

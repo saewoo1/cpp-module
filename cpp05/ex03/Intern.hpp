@@ -2,7 +2,6 @@
 # define INTERN_HPP
 
 # include "AForm.hpp"
-
 class Intern {
 	public:
 		Intern();

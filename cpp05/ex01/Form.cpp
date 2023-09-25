@@ -4,7 +4,7 @@ Form::~Form() {
     std::cout << "destructor called" << std::endl;
 }
 
-Form::Form(): sign(false), signGrade(0), executeGrade(0) {
+Form::Form(): sign(false), signGrade(150), executeGrade(150) {
 }
 
 Form::Form(const Form &obj) : name(obj.getName()), sign(false), signGrade(obj.getSignGrade()), executeGrade(obj.getExecuteGrade()) {
@@ -12,7 +12,7 @@ Form::Form(const Form &obj) : name(obj.getName()), sign(false), signGrade(obj.ge
     checkGrade(obj.getSignGrade());
 }
 
-Form::Form(std::string name, int signGrade, int executeGrade) : name(name), signGrade(signGrade), executeGrade(executeGrade) {
+Form::Form(const std::string& name, int signGrade, int executeGrade) : name(name), signGrade(signGrade), executeGrade(executeGrade) {
     checkGrade(signGrade);
     checkGrade(executeGrade);
 }
@@ -47,7 +47,7 @@ const char * Form::AlreadySigned::what(void) const throw() {
     return "already signed";
 }
 
-std::string Form::getName() const {
+const std::string& Form::getName() const {
     return this->name;
 }
 
@@ -59,10 +59,7 @@ int Form::getExecuteGrade() const {
     return this->executeGrade;
 }
 
-/*
-해당 관료의 등급이 더 높다면(수가 더 작다면),
-폼에 사인을 할 수 있다.
-*/
+
 void Form::beSigned(const Bureaucrat &obj)
 {
     if (this->sign == true) 

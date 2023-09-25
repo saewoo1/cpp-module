@@ -5,6 +5,7 @@
 #include "ShrubberyCreationForm.hpp"
 
 int main() {
+
     Bureaucrat saewoo("saewoo", 150);
     Bureaucrat tokki("tokki", 1);
 
@@ -17,26 +18,29 @@ int main() {
     std::cout << std::endl;
 
     tokki.executeForm(shrubbery);
-    shrubbery.beSigned(tokki);
+    tokki.signForm(shrubbery);
+    // shrubbery.beSigned(tokki);
     tokki.executeForm(shrubbery);
 
     std::cout << std::endl;
 
     tokki.executeForm(presidental);
-    presidental.beSigned(tokki);
+    // presidental.beSigned(tokki);
+    tokki.signForm(presidental);
     tokki.executeForm(presidental);
 
     std::cout << std::endl;
 
     tokki.executeForm(robotomy);
-    robotomy.beSigned(tokki);
+    tokki.signForm(robotomy);
+    // robotomy.beSigned(tokki);
     tokki.executeForm(robotomy);
     std::cout << std::endl;
 
     try {
         saewoo.executeForm(shrubbery);
     } catch (std::exception &e) {
-        std::cerr << e.what() << std::endl;
+        std::cout << e.what() << std::endl;
     }
 
     return (0);

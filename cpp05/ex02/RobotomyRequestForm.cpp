@@ -25,17 +25,15 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &o
 
 void RobotomyRequestForm::execute(const Bureaucrat &bureaucrat) const {
 	if (bureaucrat.getGrade() > this->getExecuteGrade())
-		throw Bureaucrat::GradeTooLowException();
-	else if (this->getSign() == false) {
-		std::cout << "RobotomyRequestForm couldn't be executed by " << bureaucrat.getName();
+		throw GradeTooLowException();
+	else if (this->getSign() == false)
 		throw NotSigned();
-	}
 	else {
 		std::srand(std::time(NULL));
 
 		std::cout << "*--- Loud drill noises ---*"<< std::endl;
 
-		if (random() % 2 == 0) 
+		if (std::rand() % 2 == 0)
 			std::cout << this->getTarget() << " successfully robotomized" << std::endl;
 		else
 			std::cout << this->getTarget() << " failed when trying to robotimize" << std::endl;

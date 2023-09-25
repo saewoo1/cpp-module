@@ -5,8 +5,12 @@
 #include "ShrubberyCreationForm.hpp"
 #include "Intern.hpp"
 
-int main() {
+// void    leaks() {
+//     std::system("leaks Forms");
+// }
 
+int main() {
+    // std::atexit(leaks);
     Intern intern;
 
     AForm *form1 = intern.makeForm("shrubbery creation", "Form1");
@@ -17,6 +21,9 @@ int main() {
     std::cout << *form2 << std::endl;
     std::cout << *form3 << std::endl;
 
+    delete form1;
+    delete form2;
+    delete form3;
     return (0);
 
 }

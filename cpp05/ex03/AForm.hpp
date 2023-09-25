@@ -19,23 +19,23 @@ class AForm {
         virtual ~AForm();
         AForm(const AForm &obj);
         AForm &operator=(const AForm &obj);
-        AForm(const std::string name, const std::string target, int signGrade, int executeGrade);
+        AForm(const std::string& name, const std::string& target, int signGrade, int executeGrade);
 
         class GradeTooHighException : public std::exception {
             public:
-                const char * what(void) const throw();
+                virtual const char * what(void) const throw();
         };
         class GradeTooLowException : public std::exception {
             public:
-                const char * what(void) const throw();
+                virtual const char * what(void) const throw();
         };
         class AlreadySigned : public std::exception {
             public:
-                const char * what(void) const throw();
+                virtual const char * what(void) const throw();
         };
         class NotSigned : public std::exception {
             public:
-                const char * what(void) const throw();
+                virtual const char * what(void) const throw();
         };
 
         void checkGrade(int grade);

@@ -24,38 +24,59 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 void ShrubberyCreationForm::execute(const Bureaucrat &obj) const {
 	if (obj.getGrade() > this->getExecuteGrade()) {
-		throw Bureaucrat::GradeTooLowException();
+		throw GradeTooLowException();
 	}
-	else if (this->getSign() == false) {
-		std::cout << "Shrubbery form couldn't be executed by " << obj.getName();
+	else if (this->getSign() == false)
 		throw NotSigned();
-	}
 	else {
 		std::ofstream out;
 
 		out.open((this->getTarget() + "_shrubbery").c_str(), std::ofstream::in | std::ofstream::trunc);
 		if (!out.good())
-			std::cerr << "Error while opening..." << std::endl;
-
+			std::cout << "Error while opening..." << std::endl;
 
 		out<<
-			"              * *\n"
-			"           *    *  *\n"
-			"      *  *    *     *  *\n"
-			"     *     *    *  *    *\n"
-			" * *   *    *    *    *   *\n"
-			" *     *  *    * * .#  *   *\n"
-			" *   *     * #.  .# *   *\n"
-			"  *     \"#.  #: #\" * *    *\n"
-			" *   * * \"#. ##\"       *\n"
-			"   *       \"###\n"
-			"             \"##\n"
-			"              ##.\n"
-			"              .##:\n"
-			"              :###\n"
-			"              ;###\n"
-			"            ,####.\n"
-			"/\\/\\/\\/\\/\\/.######.\\/\\/\\/\\/\\\n";
+			"cpp05/ \n"
+			"├─ ex00/ \n"
+			"│  ├─ Bureaucrat.cpp \n"
+			"│  ├─ Bureaucrat.hpp \n"
+			"│  ├─ main.cpp \n"
+			"│  ├─ Makefile \n"
+			"├─ ex01/ \n"
+			"│  ├─ Bureaucrat.cpp \n"
+			"│  ├─ Bureaucrat.hpp \n"
+			"│  ├─ Form.cpp\n"
+			"│  ├─ Form.hpp\n"
+			"│  ├─ main.cpp\n"
+			"│  ├─ Makefile\n"
+			"├─ ex02/\n"
+			"│  ├─ AForm.cpp\n"
+			"│  ├─ AForm.hpp\n"
+			"│  ├─ Bureaucrat.cpp\n"
+			"│  ├─ Bureaucrat.hpp\n"
+			"│  ├─ main.cpp\n"
+			"│  ├─ Makefile\n"
+			"│  ├─ PresidentialPardonForm.cpp\n"
+			"│  ├─ PresidentialPardonForm.hpp\n"
+			"│  ├─ RobotomyRequestForm.cpp\n"
+			"│  ├─ RobotomyRequestForm.hpp\n"
+			"│  ├─ ShrubberyCreationForm.cpp\n"
+			"│  ├─ ShrubberyCreationForm.hpp\n"
+			"├─ ex03/\n"
+			"│  ├─ AForm.cpp\n"
+			"│  ├─ AForm.hpp\n"
+			"│  ├─ Bureaucrat.cpp\n"
+			"│  ├─ Bureaucrat.hpp\n"
+			"│  ├─ Intern.cpp\n"
+			"│  ├─ Intern.hpp\n"
+			"│  ├─ main.cpp\n"
+			"│  ├─ Makefile\n"
+			"│  ├─ PresidentialPardonForm.cpp\n"
+			"│  ├─ PresidentialPardonForm.hpp\n"
+			"│  ├─ RobotomyRequestForm.cpp\n"
+			"│  ├─ RobotomyRequestForm.hpp\n"
+			"│  ├─ ShrubberyCreationForm.cpp\n"
+			"│  ├─ ShrubberyCreationForm.hpp\n";
 
 		out.close();
 	}

@@ -28,9 +28,8 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 
 void PresidentialPardonForm::execute(const Bureaucrat &obj) const {
 	if (obj.getGrade() > this->getExecuteGrade())
-		throw Bureaucrat::GradeTooLowException();
+		throw GradeTooLowException();
 	else if (this->getSign() == false) {
-		std::cout << "PresidentialPardonForm couldn't be executed by " << obj.getName();
 		throw NotSigned();
 	}
 

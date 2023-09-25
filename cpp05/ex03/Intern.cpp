@@ -40,7 +40,7 @@ AForm *Intern::makeForm(std::string name, std::string target)
 {
 	typedef AForm *(*funcPtr)(std::string target);
 	std::string forms[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
-	funcPtr funcArray[3] = {&newShrubbery, &newPresidential, &newRobotomy};
+	funcPtr funcArray[3] = {&newShrubbery, &newRobotomy, &newPresidential};
 
 	for (int i = 0; i < 3; i++) {
 		if (forms[i] == name) {
