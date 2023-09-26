@@ -4,19 +4,17 @@
 # include <iostream>
 
 class Scalar {
-	public:
-		static void convert(const std::string &literal);
-		static double convertString(const std::string &literal);
-
-		static void printChar(const std::string& str);
-		static void printInt(const std::string& str);
-		static void printFloat(const std::string& str);
-		static void printDouble(const std::string& str);
 	private:
-		~Scalar();
+		static void convertChar(double _double);
+		static void convertInt(double _double);
+		static void convertFloat(double _double);
+		static void convertDouble(double _double);
 		Scalar();
-		Scalar& operator=(const Scalar &obj);
 		Scalar(const Scalar &obj);
+		Scalar& operator=(const Scalar& obj);
+		~Scalar();
+	public:
+		static void convertAll(const std::string& arg);
 };
 
 #endif
