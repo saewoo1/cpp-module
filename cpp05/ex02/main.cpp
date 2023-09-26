@@ -14,18 +14,19 @@ int main() {
     ShrubberyCreationForm shrubbery("test");
     PresidentialPardonForm presidental("test");
     RobotomyRequestForm robotomy("test");
+    ShrubberyCreationForm tmp("cat");
+
+    std::cout << tmp << std::endl;
 
     std::cout << std::endl;
 
     tokki.executeForm(shrubbery);
     tokki.signForm(shrubbery);
-    // shrubbery.beSigned(tokki);
     tokki.executeForm(shrubbery);
 
     std::cout << std::endl;
 
     tokki.executeForm(presidental);
-    // presidental.beSigned(tokki);
     tokki.signForm(presidental);
     tokki.executeForm(presidental);
 
@@ -33,7 +34,6 @@ int main() {
 
     tokki.executeForm(robotomy);
     tokki.signForm(robotomy);
-    // robotomy.beSigned(tokki);
     tokki.executeForm(robotomy);
     std::cout << std::endl;
 

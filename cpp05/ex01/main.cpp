@@ -31,9 +31,5 @@ int main() {
     } catch(const std::exception &e) {
         std::cout << e.what() << '\n';
     }
-    Form test;
-    Bureaucrat test2("default", 1);
-
-    test2.signForm(test);
     return (0);
 }

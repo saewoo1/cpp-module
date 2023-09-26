@@ -1,7 +1,7 @@
 #include "AForm.hpp"
 
 AForm::~AForm() {
-    std::cout << "destructor called" << std::endl;
+    // std::cout << "destructor called" << std::endl;
 }
 
 AForm::AForm(): _name("form"), _target("default"), _sign(false), _signGrade(150), _executeGrade(150) {
@@ -15,7 +15,7 @@ AForm::AForm(const AForm &obj)
          _executeGrade(obj.getExecuteGrade()) {
     checkGrade(obj.getExecuteGrade());
     checkGrade(obj.getSignGrade());
-    std::cout << "copy Form created!" << std::endl;
+    // std::cout << "copy Form created!" << std::endl;
 }
 
 AForm::AForm(const std::string& name, const std::string& target, int signGrade, int executeGrade) 
@@ -26,12 +26,13 @@ AForm::AForm(const std::string& name, const std::string& target, int signGrade, 
                 _executeGrade(executeGrade) {
     checkGrade(signGrade);
     checkGrade(executeGrade);
-    std::cout << "correct Form created!" << std::endl;
+    // std::cout << "correct Form created!" << std::endl;
 }
 
 AForm &AForm::operator=(const AForm &obj) {
     if (this != &obj) {
         const_cast<std::string&>(_name) = obj.getName();
+        const_cast<std::string&>(_target) = obj.getTarget();
         const_cast<int&>(_signGrade) = obj.getSignGrade();
         const_cast<int&>(_executeGrade) = obj.getExecuteGrade();
         _sign = obj.getSign();

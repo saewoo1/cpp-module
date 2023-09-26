@@ -28,6 +28,7 @@ const char * Bureaucrat::GradeTooHighException::what(void) const throw() {
 const char * Bureaucrat::GradeTooLowException::what(void) const throw() {
     return "Grade too Low";
 }
+
 Bureaucrat::Bureaucrat(const std::string& name, int grade) : name(name), grade(grade) {
     if (grade < 1)
         throw GradeTooHighException();
@@ -43,7 +44,7 @@ int Bureaucrat::getGrade() const{
     return this->grade;
 }
 Bureaucrat::~Bureaucrat() {
-    std::cout << "destructor is called" << std::endl;
+    // std::cout << "destructor is called" << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj) {
@@ -54,13 +55,12 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj) {
     return (*this);
 }
 
-Bureaucrat::Bureaucrat(): name("default") {
+Bureaucrat::Bureaucrat(): name("default"), grade(150) {
     checkGrade();
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &obj)
-    : name(obj.getName())
-    , grade(obj.getGrade()) {
+Bureaucrat::Bureaucrat(const Bureaucrat &obj): name(obj.getName()), grade(obj.getGrade()) {
+    checkGrade();
 }
 
 

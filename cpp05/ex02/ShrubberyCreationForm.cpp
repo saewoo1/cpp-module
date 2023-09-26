@@ -3,20 +3,19 @@
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("shrubbery creation", "none", 145, 137) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("shrubbery creation", target, 145, 137) {
-	std::cout<< "Shrubbery Creation form created" << std::endl;
+	// std::cout<< "Shrubbery Creation form created" << std::endl;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {
-	std::cout << "deleted shrubbery form" << std::endl;
+	// std::cout << "deleted shrubbery form" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& obj) : AForm(obj.getName(), obj.getTarget(), obj.getSignGrade(), obj.getExecuteGrade()) {
-	*this = obj;
-	std::cout << "Copy shrubbery form created!" << std::endl;
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& obj) : AForm(obj) {
+	// std::cout << "Copy shrubbery form created!" << std::endl;
 }
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& obj) {
-	std::cout << "Shrubbery Creation Form assignment operator" << std::endl;
+	// std::cout << "Shrubbery Creation Form assignment operator" << std::endl;
 	if (this == &obj)
 		return *this;
 	return *this;

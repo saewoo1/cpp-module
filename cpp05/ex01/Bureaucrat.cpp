@@ -45,7 +45,7 @@ int Bureaucrat::getGrade() const{
 }
 
 Bureaucrat::~Bureaucrat() {
-    std::cout << "destructor is called" << std::endl;
+    // std::cout << "destructor is called" << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj) {
@@ -56,11 +56,12 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj) {
     return (*this);
 }
 
-Bureaucrat::Bureaucrat(): name("default") {
+Bureaucrat::Bureaucrat(): name("default"), grade(150) {
     checkGrade();
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &obj): name(obj.getName()), grade(obj.getGrade()) {
+    checkGrade();
 }
 
 

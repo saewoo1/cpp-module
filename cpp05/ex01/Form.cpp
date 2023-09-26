@@ -1,10 +1,10 @@
 #include "Form.hpp"
 
 Form::~Form() {
-    std::cout << "destructor called" << std::endl;
+    // std::cout << "destructor called" << std::endl;
 }
 
-Form::Form(): sign(false), signGrade(150), executeGrade(150) {
+Form::Form(): name("default"), sign(false), signGrade(150), executeGrade(150) {
 }
 
 Form::Form(const Form &obj) : name(obj.getName()), sign(false), signGrade(obj.getSignGrade()), executeGrade(obj.getExecuteGrade()) {
