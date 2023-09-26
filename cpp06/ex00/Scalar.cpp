@@ -82,9 +82,23 @@ void Scalar::convertAll(const std::string& arg) {
 		std::cout << "Too big for Allocated.." << std::endl;
 		exit(1);
 	}
+	
+	if (_str.length() == 1 && _str[0] != '0') {
+		convertAscii(_str[0]);
+		return ;
+	}
 	double _double = std::strtod(_str.c_str(), NULL);
 	convertChar(_double);
 	convertInt(_double);
 	convertFloat(_double);
 	convertDouble(_double);
+}
+
+void Scalar::convertAscii(char c) {
+	if (isprint(c)) {
+		std::cout << "char: '" << c << "'" << std::endl;
+		std::cout << "int: " << static_cast<int>(c) << std::endl;
+		std::cout << "float: " << static_cast<float>(c) <<".0f" << std::endl; 
+		std::cout << "double: " << static_cast<double>(c) <<".0" << std::endl; 
+	}
 }

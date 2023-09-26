@@ -9,6 +9,7 @@ class Scalar {
 		static void convertInt(double _double);
 		static void convertFloat(double _double);
 		static void convertDouble(double _double);
+		static void convertAscii(char c);
 		Scalar();
 		Scalar(const Scalar &obj);
 		Scalar& operator=(const Scalar& obj);
