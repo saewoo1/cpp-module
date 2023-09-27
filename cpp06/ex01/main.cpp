@@ -2,7 +2,12 @@
 
 #include <iostream>
 
+// void leak(){
+	// system("leaks data");
+// }
+
 int main() {
+	// atexit(leak);
 	Data *data1;
 	Data *data2;
 

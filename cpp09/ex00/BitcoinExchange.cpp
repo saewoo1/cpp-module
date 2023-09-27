@@ -20,6 +20,7 @@ void BitcoinExchange::checkCsvFile() {
         std::cout << "Error: empty database file" << std::endl;
         throw Error();
     }
+    //첫줄이 date,exchange_rate인지 검수하기?
     while (std::getline(csv, read)) {
         if (read != "date,exchange_rate") {
             comma_idx = read.find(',');
@@ -137,7 +138,7 @@ void BitcoinExchange::validateInformation(std::string inputLine) {
         }
         if (i == 2) {
             if (!checkValueInputFile(value)) return ;
-            val = std::strtod(inputLine.c_str(), NULL);
+            val = std::strtod(value.c_str(), NULL);
             if (val < 1 || val > 1000) {
                 std::cout << "Error: too large" << std::endl;
                 return ;
@@ -202,6 +203,7 @@ void BitcoinExchange::btc(char *file) {
     try {
         checkCsvFile();
         checkInputFile(file);
+        std::cout << "file is ok" << std::endl;
     }
     catch(...){
         return ;
@@ -214,29 +216,28 @@ bool BitcoinExchange::checkValueInputFile(const std::string &str) {
     char *ptr = NULL;
     double value = std::strtod(str.c_str(), &ptr);
 
-    std::cout << value << std::endl;
-    if (str.find('.', 0) == 0 || str.find('.', str.length() - 1 != std::string::npos)) {
-        std::cout << "Error: please input only number1" << std::endl;
+    if (str.find('.', 0) == 0 || str.find('.', str.length() - 1) != std::string::npos) {
+        std::cout << "Error: please input only number " << str << std::endl;
         return false;
     }
 
     if (value == 0.0 && !std::isdigit(str[0])) {
-        std::cout << "Error: please input only number2" << std::endl;
+        std::cout << "Error: please input only number "<< str << std::endl;
         return false;
     }
 
     if (*ptr && std::strcmp(ptr, "f")) {
-        std::cout << "Error: please input only number3" << std::endl;
+        std::cout << "Error: please input only number "<< str << std::endl;
         return false;
     }
     
     if (value < 0) {
-        std::cout << "Error: please input only number4" << std::endl;
+        std::cout << "Error: please input only positive number " << str << std::endl;
         return false;
     }
 
-    if (str.length() > 10 || (str.length() == 10 && value > 2147483647)) {
-        std::cout << "Error: too large number" << std::endl;
+    if (str.length() > 10 || (str.length() == 10 && (value > 2147483647 || value < -2147483648))) {
+        std::cout << "Error: too large number " << str << std::endl;
         return false;
     }
     return true;
@@ -249,7 +250,7 @@ bool BitcoinExchange::checkDateInputFile(const std::string &date) {
     int i = 0;
 
     if (date.find('-', date.length() - 1) != std::string::npos) {
-        std::cout << "Error: invalid date forman" << date << std::endl;
+        std::cout << "Error: invalid date format " << date << std::endl;
         return false;
     }
 
@@ -257,14 +258,14 @@ bool BitcoinExchange::checkDateInputFile(const std::string &date) {
         if (i == 0) {
             std::istringstream(splitted) >> year;
             if (year < 2009 || year > 2022) {
-                std::cout << "Error: invalid year" << date << std::endl;
+                std::cout << "Error: invalid year " << date << std::endl;
                 return false;
             }
         }
         if (i == 1) {
             std::istringstream(splitted) >> month;
             if (month < 1 || month > 12) {
-                std::cout << "Error: invalid month" << date << std::endl;
+                std::cout << "Error: invalid month " << date << std::endl;
                 return false;
             }
         }
@@ -272,19 +273,19 @@ bool BitcoinExchange::checkDateInputFile(const std::string &date) {
         if (i == 2) {
             std::istringstream(splitted) >> day;
             if (day < 1 || day > 31) {
-                std::cout << "Error: invalid day" << date << std::endl;
+                std::cout << "Error: invalid day " << date << std::endl;
                 return false;
             }
             if (day == 31 && (month == 4 || month == 6 || month == 9 || month == 11)) {
-                std::cout << "Error: invalid day" << date << std::endl;
+                std::cout << "Error: invalid day " << date << std::endl;
                 return false;
             }
             if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
                if (month == 2 && day > 29) {
-                std::cout << "Error: invalid day" << date << std::endl;
+                std::cout << "Error: invalid day " << date << std::endl;
                 return false;
             } else if (month == 2 && day > 28) {
-                std::cout << "Error: invalid day" << date << std::endl;
+                std::cout << "Error: invalid day " << date << std::endl;
                 return false;
             }
           }
@@ -292,7 +293,7 @@ bool BitcoinExchange::checkDateInputFile(const std::string &date) {
         i++;
     }
     if (i != 3) {
-        std::cout << "Error: invalid date type" << date << std::endl;
+        std::cout << "Error: invalid date type " << date << std::endl;
         return false;
     }
     return true;
