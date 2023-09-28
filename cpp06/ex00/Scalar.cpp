@@ -83,7 +83,7 @@ void Scalar::convertAll(const std::string& arg) {
 		exit(1);
 	}
 	
-	if (_str.length() == 1 && _str[0] != '0') {
+	if (_str.length() == 1 && !isdigit(_str[0])) {
 		convertAscii(_str[0]);
 		return ;
 	}
