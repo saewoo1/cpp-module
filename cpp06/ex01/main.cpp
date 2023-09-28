@@ -1,26 +1,27 @@
 #include "Data.hpp"
+#include "Serializer.hpp"
 
 #include <iostream>
 
 // void leak(){
-	// system("leaks data");
+// 	system("leaks data");
 // }
 
 int main() {
 	// atexit(leak);
-	Data *data1;
-	Data *data2;
+	Data* originalData = new Data();
+	uintptr_t raw = Serializer::serialize(originalData);
 
-	uintptr_t raw;
+	Data* deserializedData = Serializer::deserialize(raw);
 
-	data1 = new Data;
+	bool isEqual = (originalData == deserializedData);
 
-	std::cout << "Data : " << data1 << std::endl;
-	raw = serialize(data1);
-	std::cout << "Raw data : " << raw <<std::endl;
-	data2 = deserialize(raw);
-	std::cout << "Deserialized data : " << data2 << std::endl;
+	std::cout << "Original! : " << originalData << std:: endl;
+	std::cout << "After Serialized, raw data : " << raw << std::endl;
+	std::cout << "After Deserialized : " << deserializedData << std::endl;;
 
-	delete data1;
+	std::cout << "Equal? " << std::boolalpha << isEqual << std::endl;
+
+	delete originalData;
 	return (0);
 }

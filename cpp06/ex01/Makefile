@@ -1,6 +1,6 @@
 NAME = data
 
-SRCS = Data.cpp main.cpp
+SRCS = Data.cpp main.cpp Serializer.cpp
 
 CXX = c++
 

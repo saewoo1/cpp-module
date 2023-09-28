@@ -1,9 +1,17 @@
 #include "Data.hpp"
 
-uintptr_t serialize(Data *ptr) {
-	return reinterpret_cast<uintptr_t>(ptr);
+Data::Data() {
+	_str = "form";
 }
 
-Data *deserialize(uintptr_t raw) {
-	return reinterpret_cast<Data*>(raw);
+Data::Data(const Data &obj) {
+	_str = obj._str;
 }
+
+Data::~Data() {}
+
+Data &Data::operator=(const Data &obj) {
+	_str = obj._str;
+	return *this;
+}
+

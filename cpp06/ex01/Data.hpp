@@ -5,14 +5,13 @@
 # include <iostream>
 # include <stdint.h>
 
-struct Data {
-	int	n;
-	std::string s1;
-	std::string s2;
+class Data {
+	public:
+		std::string _str;
+		Data();
+		Data(const Data &obj);
+		Data &operator=(const Data &obj);
+		~Data();
 };
-
-uintptr_t serialize(Data *ptr);
-Data* deserialize(uintptr_t raw);
-
 
 #endif

@@ -24,6 +24,7 @@ Base *generate(void) {
     return NULL;
 }
 
+//포인터 - 참조형 둘이 반환값이 다름
 void identify(Base* p) {
         if (dynamic_cast<A*>(p) != NULL) {
             std::cout << "pointer is A!" << std::endl;
@@ -60,9 +61,12 @@ void identify(Base &p) {
 
 }
 
-
+// void leak() {
+//     system("leaks base");
+// }
 int main() {
 
+    // atexit(leak);
     Base *obj = generate();
 
     identify(obj);
