@@ -14,10 +14,12 @@ int main() {
     ShrubberyCreationForm shrubbery("test");
     PresidentialPardonForm presidental("test");
     RobotomyRequestForm robotomy("test");
-    ShrubberyCreationForm tmp("cat");
 
-    std::cout << tmp << std::endl;
 
+    std::cout << shrubbery << std::endl;
+    std::cout << presidental << std::endl;
+    std::cout << robotomy << std::endl;
+    
     std::cout << std::endl;
 
     tokki.executeForm(shrubbery);

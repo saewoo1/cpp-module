@@ -12,7 +12,7 @@ Form::Form(const Form &obj) : name(obj.getName()), sign(false), signGrade(obj.ge
     checkGrade(obj.getSignGrade());
 }
 
-Form::Form(const std::string& name, int signGrade, int executeGrade) : name(name), signGrade(signGrade), executeGrade(executeGrade) {
+Form::Form(const std::string& name, int signGrade, int executeGrade) : name(name), sign(false), signGrade(signGrade), executeGrade(executeGrade) {
     checkGrade(signGrade);
     checkGrade(executeGrade);
 }

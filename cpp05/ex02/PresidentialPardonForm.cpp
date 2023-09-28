@@ -18,7 +18,6 @@ PresidentialPardonForm::~PresidentialPardonForm() {
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm &obj) {
 	// std::cout << "Presidential Pardon form assignment operator" << std::endl;
-
 	if (this == &obj)
 		return *this;
 	return *this;

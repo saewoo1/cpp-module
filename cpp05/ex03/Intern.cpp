@@ -9,7 +9,6 @@ Intern::Intern() {
 
 Intern::Intern(const Intern &obj) {
 	*this = obj;
-
 	// std::cout << "Intern Copy Constructor called" << std::endl; 
 }
 
