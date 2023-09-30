@@ -8,27 +8,43 @@
 template <typename T>
 class MutantStack : public std::stack<T> {
     public:
-        MutantStack() {};
-        MutantStack(const MutantStack &obj) { *this = obj; };
-        MutantStack& operator=(const MutantStack &obj) { *this = obj; return (*this);};
-        ~MutantStack() {};
+        MutantStack<T>();
+        MutantStack<T>(const MutantStack &obj);
+        MutantStack& operator=(const MutantStack &obj);
+        ~MutantStack<T>();
 
-        typedef typename MutantStack<T>::stack::container_type::iterator iterator;
-        iterator begin() {return this->c.begin();};
-        iterator end() {return this->c.end();};
-
-        typedef typename MutantStack<T>::stack::container_type::reverse_iterator reverse_iterator;
-        reverse_iterator rbegin() {return this->c.rbegin();};
-        reverse_iterator rend() {return this->c.rend();};
-
-        typedef typename MutantStack<T>::stack::container_type::const_iterator const_iterator;
-        const_iterator cbegin() {return this->c.cbegin();};
-        const_iterator cend() {return this->c.cend();};
-
-        typedef typename MutantStack<T>::stack::container_type::const_reverse_iterator const_reverse_iterator;
-        const_reverse_iterator crbegin() {return this->c.crbegin();};
-        const_reverse_iterator crend() {return this->c.crend();};
-
+        typedef typename std::stack<T>::container_type::iterator iterator;
+        iterator begin() {
+            return (this->c.begin());
+        }
+        iterator end() {
+            return (this->c.end());
+        }
 };
+
+template <typename T>
+MutantStack<T>::MutantStack(void) {
+    // std::cout << "MutantStack default constructor " << std::endl;
+    return ;
+}
+
+template <typename T>
+MutantStack<T>::MutantStack(MutantStack const &obj) {
+    if (this != &obj)
+        *this = obj;
+    // std::cout << "Copy constructor called" << std::endl;
+    return ;
+}
+
+template <typename T>
+MutantStack<T>::~MutantStack(void) {
+    return ;
+}
+
+template <typename T>
+MutantStack<T> &MutantStack<T>::operator=(MutantStack const &obj) {
+    (void)obj;
+    return *this;
+}
 
 #endif
