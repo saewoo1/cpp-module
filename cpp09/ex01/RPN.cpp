@@ -8,6 +8,10 @@ bool isOperation(std::string &token) {
 
 void printStack(std::stack<int> stack) {
 	std::stack<int> tmpStack = stack;
+	if (tmpStack.size() != 1){
+		std::cout << "invalid argument count.." << std::endl;
+		return ;
+	}
 
 	while (!tmpStack.empty()) {
 		std::cout << tmpStack.top() << " ";

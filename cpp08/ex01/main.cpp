@@ -16,12 +16,12 @@ int main() {
     std::cout << sp.shortestSpan() << std::endl;
     std::cout << sp.longestSpan() << std::endl;
     }
-    const int size = 10000;
+    const int size = 12345;
     std::vector<int> testVector(size);
 
 
     //난수 10000개 만들고 섞어서 결과값 보여주기ㅠ
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+    std::srand(std::time(NULL));
 
     for (int i = 0; i < size; i++) {
         int ranNum;
@@ -30,7 +30,6 @@ int main() {
         } while (std::count(testVector.begin(), testVector.end() + i, ranNum) > 0);
         testVector[i] = ranNum;
     }
-    std::cout << "hihi" << std::endl;
 
     Span sp = Span(size);
 
