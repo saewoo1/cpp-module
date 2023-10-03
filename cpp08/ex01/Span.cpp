@@ -44,8 +44,9 @@ void Span::addNumbers(std::vector<int>::iterator start, std::vector<int>::iterat
     if ((_numbers.size() >= _maxSize) 
             || (_maxSize - _numbers.size() < static_cast<unsigned int>(end - start))) {
         throw std::invalid_argument("span is already full!");
-        _numbers.insert(_numbers.end(), start, end);
     }
+    _numbers.insert(_numbers.end(), start, end);
+
 }
 
 // 어느 간격이 가장 크기가 작을가~
