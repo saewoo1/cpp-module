@@ -7,6 +7,10 @@ int main(int ac, char **av) {
         exit(1);
     }
 
-    BitcoinExchange *test = new BitcoinExchange();
-    test->btc(av[1]);
+    BitcoinExchange test;
+    if (test.fillCsv())
+        return (2);
+    if (test.inputValue(av[1]))
+        return (3);
+    return (0);
 }

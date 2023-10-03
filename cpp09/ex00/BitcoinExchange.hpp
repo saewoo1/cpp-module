@@ -1,38 +1,26 @@
 #ifndef BITCOINEXCHANGE_HPP
 # define BITCOINEXCHANGE_HPP
 
+# include <string>
 # include <map>
-# include <exception>
-# include <iostream>
 
-//key - value 사용이라 map이 맞지 않을가 하는,,..
 class BitcoinExchange {
-    private:
-        std::map<std::string, float> bitcoinData;
-        
-        void checkCsvFile();
-        void checkInputFile(char *file);
-        bool validateDate(std::string date);
-        bool validateValue(std::string value);
-        void inputBitcoin(char *file);
-        void validateInformation(std::string str);
-        bool checkDateInputFile(const std::string &date);
-        bool checkValueInputFile(const std::string &value);
-        void printResult(std::string date, float value);
+	private:
+		std::map<std::string, float> _data;
+	public:
+		BitcoinExchange();
+		~BitcoinExchange();
+		BitcoinExchange(const BitcoinExchange &obj);
+		BitcoinExchange &operator=(const BitcoinExchange &obj);
 
-        
-    public:
-        BitcoinExchange();
-        ~BitcoinExchange();
-        BitcoinExchange(const BitcoinExchange &obj);
-        BitcoinExchange& operator=(const BitcoinExchange &obj);
-
-        void btc(char *file);
-
-        class Error : public std::exception {
-            public:
-                const char * what(void) const throw();
-        };
+		void	printRes() const;
+		int		fillCsv();
+		int		inputValue(char *filename) const;
+		int		parseValue(float value) const;
+		int		parseDate(std::string date) const;
+		bool	isLeapYear(int year) const;
+		bool	checkFormat(std::string date) const;
+		float	getExchangeRate(const std::string &date) const;
 };
 
 #endif
