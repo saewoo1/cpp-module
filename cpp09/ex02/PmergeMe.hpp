@@ -1,5 +1,5 @@
-#ifndef PERGEME_HPP
-# define PERGEME_HPP
+#ifndef PMERGEME_HPP
+# define PMERGEME_HPP
 
 # include <algorithm>
 # include <iostream>
@@ -7,7 +7,7 @@
 # include <deque>
 # include <set>
 
-class PergeMe {
+class PmergeMe {
     private:
         int _unpairedVec;
         int _unpairedDeq;
@@ -15,16 +15,16 @@ class PergeMe {
         std::vector<int>    _inputVec;
         std::vector<int>    _mainChainVec;
         std::vector<int>    _pendingChainVec;
-        std::vector<int>    _jcobSeqVec;
+        std::vector<int>    _jacobSeqVec;
         std::vector<int>    _posVec;
-        std::vector<std::pair<int, int>>    _pairVec;
+        std::vector<std::pair<int, int> >    _pairVec;
 
         std::deque<int>     _inputDeq;
         std::deque<int>     _mainChainDeq;
         std::deque<int>     _pendingChainDeq;
-        std::deque<int>     _JcobSeqDeq;
+        std::deque<int>     _jacobSeqDeq;
         std::deque<int>     _posDeq;
-        std::deque<std::pair<int, int>>     _pairDeq;
+        std::deque<std::pair<int, int> >     _pairDeq;
 
         void    populateContainers(int ac, char **av);
         void    printUnsortedSequence(int ac);
@@ -40,10 +40,10 @@ class PergeMe {
         void    insertDeque(void);
         void    posDeque();
     public:
-        PergeMe();
-        PergeMe(const PergeMe &obj);
-        ~PergeMe();
-        PergeMe &operator=(const PergeMe &obj);
+        PmergeMe();
+        PmergeMe(const PmergeMe &obj);
+        ~PmergeMe();
+        PmergeMe &operator=(const PmergeMe &obj);
 
         void    merge(int ac, char **av);
 

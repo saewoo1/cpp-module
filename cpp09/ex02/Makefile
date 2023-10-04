@@ -1,6 +1,6 @@
-NAME = PergeMe
+NAME = PmergeMe
 
-SRCS = main.cpp PergeMe.cpp
+SRCS = main.cpp PmergeMe.cpp
 
 CXX = c++
 
