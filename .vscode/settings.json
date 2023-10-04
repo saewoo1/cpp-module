@@ -75,6 +75,7 @@
 		"__verbose_abort": "cpp",
 		"list": "cpp",
 		"__tree": "cpp",
-		"map": "cpp"
+		"map": "cpp",
+		"set": "cpp"
 	}
 }

@@ -6,17 +6,14 @@
 #include <algorithm>
 
 BitcoinExchange::BitcoinExchange() {
-	return ;
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &obj) {
 	if (this != &obj)
 		*this = obj;
-	return ;
 }
 
 BitcoinExchange::~BitcoinExchange() {
-	return ;
 }
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &obj) {
