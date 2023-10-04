@@ -19,10 +19,10 @@ PmergeMe::PmergeMe(const PmergeMe &obj) {
 }
 
 void PmergeMe::merge(int ac, char **av) {
-    PmergeMe::populateContainers(ac, av);
-    PmergeMe::printUnsortedSequence(ac);
-    PmergeMe::sortVec();
-    PmergeMe::sortDeq();
+    populateContainers(ac, av);
+    printUnsortedSequence(ac);
+    sortVec();
+    sortDeq();
 }
 
 void PmergeMe::populateContainers(int ac, char **av) {
@@ -231,20 +231,20 @@ void PmergeMe::insertDeque() {
     std::deque<int>::iterator it;
 	size_t addCount = 0;
 
-	PmergeMe::posDeque();
+	posDeque();
 	for (it = _posDeq.begin(); it < _posDeq.end(); it++)
 	{
 		int n = _pendingChainDeq.at(*it - 1);
 
 		size_t endPos = *it + addCount;
-		size_t pos = PmergeMe::binarySearch(_mainChainDeq, n, 0, endPos);
+		size_t pos = binarySearch(_mainChainDeq, n, 0, endPos);
 		_mainChainDeq.insert(_mainChainDeq.begin() + pos, n);
 		addCount++;
 	}
 	if (_unpairedDeq != -1)
 	{
 		size_t nbr = _unpairedDeq;
-		size_t pos = PmergeMe::binarySearch(_mainChainDeq, nbr, 0, _mainChainDeq.size() - 1);
+		size_t pos = binarySearch(_mainChainDeq, nbr, 0, _mainChainDeq.size() - 1);
 		_mainChainDeq.insert(_mainChainDeq.begin() + pos, nbr);
 	}
 }
