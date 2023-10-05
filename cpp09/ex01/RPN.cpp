@@ -12,12 +12,7 @@ void printStack(std::stack<int> stack) {
 		std::cout << "invalid argument count.." << std::endl;
 		return ;
 	}
-
-	while (!tmpStack.empty()) {
-		std::cout << tmpStack.top() << " ";
-		tmpStack.pop();
-	}
-	std::cout << std::endl;
+	std::cout << stack.top() << std::endl;
 }
 
 
@@ -53,7 +48,7 @@ bool fillStack(std::string &expression, std::stack<int> stack) {
 
 	while (iss >> token) {
 		if (token.size() != 1 || (!std::isdigit(token[0]) && !isOperation(token))) {
-			std::cout << "Invalid input : " << token[0] << std::endl;
+			std::cout << "Invalid input : " << token << std::endl;
 			return true;
 		}
 		else if (std::isdigit(token[0]))
